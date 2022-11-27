@@ -1,4 +1,4 @@
-import http2, {ClientSessionOptions, SecureClientSessionOptions} from "http2";
+import http2, {ClientSessionOptions, SecureClientSessionOptions} from "node:http2";
 import ClientHttp2DurableSession from "./ClientHttp2DurableSession";
 import url from "node:url";
 

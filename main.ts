@@ -1,16 +1,24 @@
 import dotenv from "dotenv";
 import {Kafka} from 'kafkajs';
-import Http2Client from "./lib/Http2Client";
+import Http2Client from "./lib/http2/Http2Client";
 
 import { emitterFor, Mode, CloudEvent } from "cloudevents";
 import {Message} from "cloudevents/dist/message";
 import {Options} from "cloudevents/dist/transport/emitter";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
+import {Command} from "commander";
 
+dotenv.config();
 
-dotenv.config()
+const program = new Command()
+    .description('Zeebe Cloudevents Gateway')
+    .option('--insecure', 'Allow self-signed TLS certificates', false);
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+program.parse();
+const options = program.opts();
+
+if(options['insecure'])
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
 const kafka = new Kafka({
     clientId: 'zeebe-connector',

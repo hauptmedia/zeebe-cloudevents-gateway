@@ -1,4 +1,4 @@
-import * as http2 from "http2";
+import * as http2 from "node:http2";
 import {
     ClientHttp2Session,
     ClientHttp2Stream,
@@ -6,7 +6,7 @@ import {
     Http2Stream,
     IncomingHttpHeaders,
     Settings
-} from "http2";
+} from "node:http2";
 import url from "node:url";
 import {OutgoingHttpHeaders} from "node:http";
 import EventEmitter from "events";

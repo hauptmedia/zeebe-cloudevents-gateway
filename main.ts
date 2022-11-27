@@ -5,6 +5,7 @@ import Http2Client from "./lib/Http2Client";
 import { emitterFor, Mode, CloudEvent } from "cloudevents";
 import {Message} from "cloudevents/dist/message";
 import {Options} from "cloudevents/dist/transport/emitter";
+import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 
 
 dotenv.config()
@@ -61,8 +62,11 @@ const run = async () => {
                 throw "[http/2] session is not connected";
 
             } else {
+                const zeebeRecord = JSON.parse(payloadAsString) as ZeebeRecord<ValueType>,
+                    type = `io.zeebe.protocol.record.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}`;
+
                 emit(new CloudEvent({
-                    type: "type",
+                    type,
                     source: "source",
                     data: payloadAsString
                 }));

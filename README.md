@@ -1,4 +1,10 @@
-# Cloudevents types
+Zeebe Cloudevents Gateway
+=========================
+![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
+
+Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) comaptible HTTP Endpoints.
+
+# Available Cloudevents types
 
 ## Decision
 
@@ -79,7 +85,15 @@
 
 ## Message Subscription
 
-- io.zeebe.protocol.record.event.message_subscription
+- io.zeebe.protocol.record.event.message_subscription.create
+- io.zeebe.protocol.record.event.message_subscription.created
+- io.zeebe.protocol.record.event.message_subscription.correlating
+- io.zeebe.protocol.record.event.message_subscription.correlate
+- io.zeebe.protocol.record.event.message_subscription.correlated
+- io.zeebe.protocol.record.event.message_subscription.reject
+- io.zeebe.protocol.record.event.message_subscription.rejected
+- io.zeebe.protocol.record.event.message_subscription.delete
+- io.zeebe.protocol.record.event.message_subscription.deleted
 
 ## Process
 

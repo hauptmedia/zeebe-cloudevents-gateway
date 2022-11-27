@@ -63,7 +63,7 @@ const run = async () => {
 
             } else {
                 const zeebeRecord = JSON.parse(payloadAsString) as ZeebeRecord<ValueType>,
-                    type = `io.zeebe.protocol.record.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}`;
+                    type = `io.zeebe.protocol.record.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}.${zeebeRecord.intent.toLowerCase()}`;
 
                 emit(new CloudEvent({
                     type,

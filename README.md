@@ -151,6 +151,8 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process
 
+[JSON Schema](https://github.com/hauptmedia/zeebe-cloudevents-gateway/blob/main/jsonschema/event/process.json)
+
 | Event Type                      | Description |
 |---------------------------------|-------------|
 | io.zeebe.event.process.created  | TBD         |

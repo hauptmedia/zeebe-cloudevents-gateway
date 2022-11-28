@@ -141,18 +141,18 @@
             "type": "number"
         },
         "evaluatedDecisionsList": {
-            "description": "The {@link EvaluatedDecisionValuedetails} of the evaluated decision and its required\ndecisions. The order depends on the evaluation order, starting from the required decisions.",
+            "description": "The {@link EvaluatedDecisionValuedetails} of the evaluated decision and its required decisions. The order depends on the evaluation order, starting from the required decisions.",
             "items": {
                 "$ref": "#/definitions/EvaluatedDecisionValue"
             },
             "type": "array"
         },
         "evaluationFailureMessage": {
-            "description": "If the evaluation of the decision failed then it returns the reason why the evaluation of the\n{@link #getFailedDecisionId() failed decision} was not successful. The failure message is not\navailable if the decision was evaluated successfully.",
+            "description": "If the evaluation of the decision failed then it returns the reason why the evaluation of the {@link #getFailedDecisionId() failed decision} was not successful. The failure message is not available if the decision was evaluated successfully.",
             "type": "string"
         },
         "failedDecisionId": {
-            "description": "If the evaluation of the decision failed then it returns the id of the decision where the\nevaluation failed. It can be the called/root decision or any of its required decisions. The\nreason of the failure can be retrieved as {@link #getEvaluationFailureMessage() evaluation}   * failure message}. The decision id is not available if the decision was evaluated successfully.",
+            "description": "If the evaluation of the decision failed then it returns the id of the decision where the evaluation failed. It can be the called/root decision or any of its required decisions. The reason of the failure can be retrieved as {@link #getEvaluationFailureMessage() evaluation}   * failure message}. The decision id is not available if the decision was evaluated successfully.",
             "type": "string"
         },
         "processDefinitionKey": {

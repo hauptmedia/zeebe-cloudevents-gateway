@@ -22,7 +22,7 @@
             "type": "number"
         },
         "duplicate": {
-            "description": "{@code true} if the decision is a duplicate (and has been deployed previously),\n    otherwise {@code false}",
+            "description": "true if the decision is a duplicate (and has been deployed previously), otherwise false",
             "type": "boolean"
         },
         "version": {

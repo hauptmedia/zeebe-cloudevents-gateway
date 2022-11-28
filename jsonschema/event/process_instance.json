@@ -65,15 +65,15 @@
             "type": "string"
         },
         "flowScopeKey": {
-            "description": "the key of the activity instance that is the flow scope of this flow element instance;\n    -1 for records of the process instance itself.",
+            "description": "the key of the activity instance that is the flow scope of this flow element instance; -1 for records of the process instance itself.",
             "type": "number"
         },
         "parentElementInstanceKey": {
-            "description": "the key of the element instance that created this instance, or -1 if it was not created\n    by another process instance.",
+            "description": "the key of the element instance that created this instance, or -1 if it was not created by another process instance.",
             "type": "number"
         },
         "parentProcessInstanceKey": {
-            "description": "the key of the process instance that created this instance, or -1 if it was not created\n    by another process instance.",
+            "description": "the key of the process instance that created this instance, or -1 if it was not created by another process instance.",
             "type": "number"
         },
         "processDefinitionKey": {

@@ -10,7 +10,7 @@
             "type": "string"
         },
         "processInstanceKey": {
-            "description": "the process instance key, which is related to the failed event. If the event is not\n    process instance related, then this will return -1",
+            "description": "the process instance key, which is related to the failed event. If the event is not process instance related, then this will return -1",
             "type": "number"
         },
         "stacktrace": {

@@ -44,13 +44,10 @@
                     "type": "string"
                 },
                 "variables": {
-                    "$ref": "#/definitions/Record<string,any>",
-                    "description": "The variables of this instruction. Can be empty."
+                    "description": "The variables of this instruction. Can be empty.",
+                    "type": "object"
                 }
             },
-            "type": "object"
-        },
-        "Record<string,any>": {
             "type": "object"
         }
     },

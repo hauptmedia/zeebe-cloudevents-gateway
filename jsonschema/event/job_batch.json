@@ -8,11 +8,11 @@
                     "type": "string"
                 },
                 "customHeaders": {
-                    "$ref": "#/definitions/Record<string,string>",
-                    "description": "user-defined headers associated with this job"
+                    "description": "user-defined headers associated with this job",
+                    "type": "object"
                 },
                 "deadline": {
-                    "description": "the unix timestamp until when the job is exclusively assigned to this worker (time unit\n    is milliseconds since unix epoch). If the deadline is exceeded, it can happen that the job\n    is handed to another worker and the work is performed twice. If this property is not set it\n    will return '-1'.",
+                    "description": "the unix timestamp until when the job is exclusively assigned to this worker (time unit is milliseconds since unix epoch). If the deadline is exceeded, it can happen that the job is handed to another worker and the work is performed twice. If this property is not set it will return '-1'.",
                     "type": "number"
                 },
                 "elementId": {
@@ -24,11 +24,11 @@
                     "type": "string"
                 },
                 "errorCode": {
-                    "description": "the error code to identify the business error. It is set by the job worker then the\n    processing fails because of a non-technical error that should be handled by the process.",
+                    "description": "the error code to identify the business error. It is set by the job worker then the processing fails because of a non-technical error that should be handled by the process.",
                     "type": "string"
                 },
                 "errorMessage": {
-                    "description": "the message that contains additional context of the failure/error. It is set by the job\n    worker then the processing fails because of a technical failure or a non-technical error.",
+                    "description": "the message that contains additional context of the failure/error. It is set by the job worker then the processing fails because of a technical failure or a non-technical error.",
                     "type": "string"
                 },
                 "processDefinitionKey": {
@@ -44,7 +44,7 @@
                     "type": "number"
                 },
                 "recurringTime": {
-                    "description": "the timestamp when this job record should be recurred. This method is used by backoff\n    to determine the date when the job is needed to be recurred after backoff.",
+                    "description": "the timestamp when this job record should be recurred. This method is used by backoff to determine the date when the job is needed to be recurred after backoff.",
                     "type": "number"
                 },
                 "retries": {
@@ -60,20 +60,14 @@
                     "type": "string"
                 },
                 "variables": {
-                    "$ref": "#/definitions/Record<string,any>",
-                    "description": "the variables of this record. Can be empty."
+                    "description": "the variables of this record. Can be empty.",
+                    "type": "object"
                 },
                 "worker": {
                     "description": "the assigned worker to complete the job",
                     "type": "string"
                 }
             },
-            "type": "object"
-        },
-        "Record<string,any>": {
-            "type": "object"
-        },
-        "Record<string,string>": {
             "type": "object"
         }
     },

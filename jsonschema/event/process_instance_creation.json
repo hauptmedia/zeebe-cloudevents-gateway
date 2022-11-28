@@ -8,9 +8,6 @@
                 }
             },
             "type": "object"
-        },
-        "Record<string,any>": {
-            "type": "object"
         }
     },
     "properties": {
@@ -34,8 +31,8 @@
             "type": "array"
         },
         "variables": {
-            "$ref": "#/definitions/Record<string,any>",
-            "description": "the variables of this record. Can be empty."
+            "description": "the variables of this record. Can be empty.",
+            "type": "object"
         },
         "version": {
             "description": "the version of the BPMN process to create a process from",

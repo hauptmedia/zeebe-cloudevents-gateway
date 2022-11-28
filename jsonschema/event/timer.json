@@ -22,7 +22,7 @@
             "type": "number"
         },
         "targetElementId": {
-            "description": "The handlerFlowNodeID property represent the ID, from the BPMN XML of the process, of the flow\nnode which will handle the timer trigger's event. In normal flow, this is usually the same as\nthe related activity's ID, but when the timer was created due to a boundary event, it will be\nthat event's ID.",
+            "description": "The handlerFlowNodeID property represent the ID, from the BPMN XML of the process, of the flow node which will handle the timer trigger's event. In normal flow, this is usually the same as the related activity's ID, but when the timer was created due to a boundary event, it will be that event's ID.",
             "type": "string"
         }
     },

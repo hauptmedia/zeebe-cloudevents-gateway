@@ -1,21 +1,16 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "Record<string,any>": {
-            "type": "object"
-        }
-    },
     "properties": {
         "bpmnProcessId": {
             "description": "the BPMN process id tied to the subscription",
             "type": "string"
         },
         "correlationKey": {
-            "description": "the correlation key of the message. It is only set when a message is correlated to this\n    subscription. Otherwise, it returns an empty string.",
+            "description": "the correlation key of the message. It is only set when a message is correlated to this subscription. Otherwise, it returns an empty string.",
             "type": "string"
         },
         "messageKey": {
-            "description": "the key of the message. It is only set when a message is correlated to this\n    subscription. Otherwise, it returns -1.",
+            "description": "the key of the message. It is only set when a message is correlated to this subscription. Otherwise, it returns -1.",
             "type": "number"
         },
         "messageName": {
@@ -27,7 +22,7 @@
             "type": "number"
         },
         "processInstanceKey": {
-            "description": "the key of the process instance that was created by this message. It is only set when a\n    message is correlated to this subscription. Otherwise, it returns -1.",
+            "description": "the key of the process instance that was created by this message. It is only set when a message is correlated to this subscription. Otherwise, it returns -1.",
             "type": "number"
         },
         "startEventId": {
@@ -35,8 +30,8 @@
             "type": "string"
         },
         "variables": {
-            "$ref": "#/definitions/Record<string,any>",
-            "description": "the variables of this record. Can be empty."
+            "description": "the variables of this record. Can be empty.",
+            "type": "object"
         }
     },
     "type": "object"

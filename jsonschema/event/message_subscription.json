@@ -1,10 +1,5 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "definitions": {
-        "Record<string,any>": {
-            "type": "object"
-        }
-    },
     "properties": {
         "bpmnProcessId": {
             "description": "the BPMN process id tied to the subscription",
@@ -19,7 +14,7 @@
             "type": "number"
         },
         "interrupting": {
-            "description": "{@code true} if the event tied to the subscription is interrupting. Otherwise, it\n    returns {@code false} if the event is non-interrupting.",
+            "description": "true if the event tied to the subscription is interrupting. Otherwise, it returns false if the event is non-interrupting.",
             "type": "boolean"
         },
         "messageKey": {
@@ -35,8 +30,8 @@
             "type": "number"
         },
         "variables": {
-            "$ref": "#/definitions/Record<string,any>",
-            "description": "the variables of this record. Can be empty."
+            "description": "the variables of this record. Can be empty.",
+            "type": "object"
         }
     },
     "type": "object"

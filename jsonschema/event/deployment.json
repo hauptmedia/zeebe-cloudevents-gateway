@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "DecisionRecordValue": {
-            "description": "Represents a deployed decision. A decision belongs to a decision requirements graph (DRG/DRD)\nthat represents the DMN resource. The DMN resource itself is stored as part of the DRG (see\n{@link DecisionRequirementsRecordValue}).",
+            "description": "Represents a deployed decision. A decision belongs to a decision requirements graph (DRG/DRD) that represents the DMN resource. The DMN resource itself is stored as part of the DRG (see {@link DecisionRequirementsRecordValue}).",
             "type": "object"
         },
         "DecisionRequirementsMetadataValue": {

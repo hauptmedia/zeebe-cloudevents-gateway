@@ -2,7 +2,7 @@ Zeebe Cloudevents Gateway
 =========================
 ![Compatible with: Camunda Platform 8](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%208-0072Ce)
 
-Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) comptible HTTP Endpoints.
+Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) compatible HTTP Endpoints.
 
 # Available Cloudevents types
 

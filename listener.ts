@@ -1,7 +1,7 @@
 import {createSecureServer} from "node:http2";
 import {readFileSync} from "node:fs";
-
 import {CloudEventV1, HTTP} from "cloudevents";
+import {ZBClient} from "zeebe-node";
 
 const port = 7777,
     host = "0.0.0.0";
@@ -12,10 +12,19 @@ const server = createSecureServer({
     allowHTTP1: true
 });
 
-const cloudEventHandler = (cloudevent: CloudEventV1<any>) => {
+const zbc = new ZBClient("http://localhost:26500");
 
-    console.log(cloudevent.type);
+const cloudEventHandler = async (cloudevent: CloudEventV1<any>) => {
 
+    switch(cloudevent.type) {
+        case 'io.zeebe.command.deploy_resource':
+            await zbc.deployResource({
+                name: 'test.bpmn',
+                process: Buffer.from(cloudevent.data)
+            })
+            break;
+
+    }
 }
 
 server.on('request', async(req, res) => {

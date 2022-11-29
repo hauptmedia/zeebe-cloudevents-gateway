@@ -1,12 +1,15 @@
 {
   "dependencies": {
     "@hauptmedia/zeebe-exporter-types": "^1.0.1",
+    "@hauptmedia/zeebe-gateway-types": "^0.0.7",
+    "ajv": "^8.11.2",
     "cloudevents": "^6.0.3",
     "commander": "^9.4.1",
     "dotenv": "^16.0.3",
     "hazelcast-client": "^5.1.0",
     "kafkajs": "^2.2.2",
     "ts-node": "^10.9.1",
+    "ts-proto": "^1.135.0",
     "uuid": "^9.0.0",
     "zeebe-node": "^8.1.2"
   },

@@ -3,7 +3,12 @@ import {readFileSync} from "node:fs";
 import {CloudEventV1, HTTP} from "cloudevents";
 import {ZBClient} from "zeebe-node";
 import Ajv from "ajv"
-import {DeployResourceRequest, ZeebeGatewayCommandJsonSchemaRegistry} from "@hauptmedia/zeebe-gateway-types";
+import {
+    CreateProcessInstanceRequest,
+    DeployResourceRequest,
+    ZeebeGatewayCommandJsonSchemaRegistry
+} from "@hauptmedia/zeebe-gateway-types";
+import {ZeebeGatewayCommandTypes} from "@hauptmedia/zeebe-gateway-types/dist/cjs/jsonschema";
 
 const ajv = new Ajv()
 
@@ -29,19 +34,17 @@ const typedValidate = <T>(schema: object, data: T): T => {
 }
 
 const cloudEventHandler = async (cloudevent: CloudEventV1<any>) => {
-    type typeScriptType = 'io.zeebe.command.v1.ActivateJobs';
-
-    const type = cloudevent.type as typeScriptType,
+    const type = cloudevent.type as ZeebeGatewayCommandTypes,
         schema = ZeebeGatewayCommandJsonSchemaRegistry[type];
 
     if(!schema)
         throw "Unknown type " + cloudevent.type;
 
+    let data;
+
     switch(cloudevent.type) {
         case 'io.zeebe.command.v1.DeployResource':
-            console.log(cloudevent.data);
-
-            const data = typedValidate<DeployResourceRequest>(schema, cloudevent.data);
+            data = typedValidate<DeployResourceRequest>(schema, cloudevent.data);
             return Promise.all(data.resources.map(resource => {
                     return zbc.deployResource({
                         name: resource.name,
@@ -49,6 +52,13 @@ const cloudEventHandler = async (cloudevent: CloudEventV1<any>) => {
                     });
             }));
 
+        case 'io.zeebe.command.v1.CreateProcessInstance':
+            data = typedValidate<CreateProcessInstanceRequest>(schema, cloudevent.data);
+            return zbc.createProcessInstance({
+                bpmnProcessId: data.bpmnProcessId,
+                variables: data.variables,
+                version: data.version
+            });
     }
 }
 
@@ -63,10 +73,17 @@ server.on('request', async(req, res) => {
         receivedEvent = HTTP.toEvent<object>({ headers: req.headers, body: body });
 
     try {
-        if (Array.isArray(receivedEvent))
-            await receivedEvent.forEach(cloudEventHandler);
-        else
-            await cloudEventHandler(receivedEvent);
+
+        if (Array.isArray(receivedEvent)) {
+            const res = await receivedEvent.forEach(cloudEventHandler);
+            console.log(res);
+
+        } else {
+
+            const res = await cloudEventHandler(receivedEvent);
+            console.log(res);
+
+        }
 
     } catch(e) {
         console.error(e);

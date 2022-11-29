@@ -49,6 +49,10 @@ const http2Sender = async(message: Message) => {
     });
     req.write(message.body);
     req.end();
+
+    console.log(message.headers['ce-type']);
+
+    console.log(JSON.parse(message.body as string));
 }
 
 const emit = emitterFor(http2Sender, { mode: Mode.BINARY });
@@ -63,7 +67,7 @@ const run = async () => {
                 return;
 
             const payloadAsString = message.value.toString();
-
+console.log(payloadAsString);
             if (!http2Session.connected) {
                 const resume = pause();
                 http2Session.once('connect', resume);
@@ -76,7 +80,7 @@ const run = async () => {
                 emit(new CloudEvent({
                     type,
                     source: "source",
-                    data: payloadAsString
+                    data: zeebeRecord.value
                 }));
             }
 

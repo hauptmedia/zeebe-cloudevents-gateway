@@ -1,14 +1,13 @@
 import {createSecureServer} from "node:http2";
 import {readFileSync} from "node:fs";
 import {CloudEventV1, HTTP} from "cloudevents";
-import {ZBClient} from "zeebe-node";
 import Ajv from "ajv"
 import {
     CreateProcessInstanceRequest,
     DeployResourceRequest,
-    ZeebeGatewayCommandJsonSchemaRegistry
+    ZeebeGatewayCommandJsonSchemaRegistry, ZeebeGatewayCommandTypes, DeployResourceResponse, GatewayClient
 } from "@hauptmedia/zeebe-gateway-types";
-import {ZeebeGatewayCommandTypes} from "@hauptmedia/zeebe-gateway-types/dist/cjs/jsonschema";
+import {ChannelCredentials, ClientOptions, ServiceError} from "@grpc/grpc-js";
 
 const ajv = new Ajv()
 
@@ -21,7 +20,7 @@ const server = createSecureServer({
     allowHTTP1: true
 });
 
-const zbc = new ZBClient("http://localhost:26500");
+const zbc = new GatewayClient("localhost:26500", ChannelCredentials.createInsecure());
 
 const typedValidate = <T>(schema: object, data: T): T => {
     const validate = ajv.compile<T>(schema),
@@ -43,22 +42,25 @@ const cloudEventHandler = async (cloudevent: CloudEventV1<any>) => {
     let data;
 
     switch(cloudevent.type) {
-        case 'io.zeebe.command.v1.DeployResource':
-            data = typedValidate<DeployResourceRequest>(schema, cloudevent.data);
-            return Promise.all(data.resources.map(resource => {
-                    return zbc.deployResource({
-                        name: resource.name,
-                        process: Buffer.from(resource.content)
-                    });
-            }));
+        case 'io.zeebe.command.v1.DeployResourceRequest':
+            console.log(cloudevent.data);
+          //  data = typedValidate<DeployResourceRequest>(schema, cloudevent.data);
 
-        case 'io.zeebe.command.v1.CreateProcessInstance':
+            const req = DeployResourceRequest.fromJSON(cloudevent.data);
+            console.log(req);
+            zbc.deployResource(req, (error: ServiceError | null, response: DeployResourceResponse) => {
+                console.log(error);
+                console.log(response);
+
+            });
+
+/*        case 'io.zeebe.command.v1.CreateProcessInstance':
             data = typedValidate<CreateProcessInstanceRequest>(schema, cloudevent.data);
             return zbc.createProcessInstance({
                 bpmnProcessId: data.bpmnProcessId,
                 variables: data.variables,
                 version: data.version
-            });
+            });*/
     }
 }
 
@@ -69,10 +71,10 @@ server.on('request', async(req, res) => {
         chunks.push(Buffer.from(chunk));
     }
 
-    const body = Buffer.concat(chunks).toString("utf-8"),
-        receivedEvent = HTTP.toEvent<object>({ headers: req.headers, body: body });
+    const body = Buffer.concat(chunks).toString("utf-8");
 
     try {
+        const receivedEvent = HTTP.toEvent<object>({ headers: req.headers, body: body });
 
         if (Array.isArray(receivedEvent)) {
             const res = await receivedEvent.forEach(cloudEventHandler);

@@ -8,7 +8,7 @@ interface HttpServerOptions {
     allowHTTP1: boolean;
 }
 
-export class HttpServer {
+export class HttpListener {
     protected cloudeventsHandler: CloudeventsHandler;
     protected options: HttpServerOptions;
 

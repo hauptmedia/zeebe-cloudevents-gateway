@@ -6,12 +6,16 @@ import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 
 export interface HttpSenderOptions {
     insecure: boolean;
+    endpoint: string;
 }
 
 export class HttpSender {
     protected kafkaConsumer: KafkaConsumer;
+    protected options: HttpSenderOptions;
 
     constructor(kafkaConsumer: KafkaConsumer, options: HttpSenderOptions) {
+        this.options = options;
+
         if(options.insecure)
             process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
@@ -19,7 +23,9 @@ export class HttpSender {
     }
 
     start() {
-        const http2Session = Http2Client.connect("https://127.0.0.1:4000");
+        const endpoint = new URL(this.options.endpoint);
+        const http2Session = Http2Client.connect(`${endpoint.protocol}//${endpoint.host}`);
+
         http2Session.on('reconnect', (connectionAttemptNumber, reconnectDelay) => {
             console.log(`[http/2] session reconnect, attempt #${connectionAttemptNumber} scheduled in ${reconnectDelay}ms`);
         });
@@ -35,7 +41,7 @@ export class HttpSender {
         const http2Sender = async(message: Message) => {
             const req = http2Session.request({
                 ':method': "POST",
-                ':path': `/events`,
+                ':path': endpoint.pathname,
                 ...message.headers
                 //'authorization': `Bearer ${access_token}`,
             });

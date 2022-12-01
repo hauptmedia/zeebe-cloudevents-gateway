@@ -80,6 +80,9 @@ export class GrpcHandler {
 
             case 'UpdateJobRetriesRequest':
                 return this._handler('updateJobRetries', UpdateJobRetriesRequest, data)
+
+            default:
+                throw `Unsupported request type: ${data}`
         }
     }
 }

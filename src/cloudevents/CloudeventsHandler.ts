@@ -1,6 +1,6 @@
 import {CloudEvent, CloudEventV1, HTTP} from "cloudevents";
 import Ajv from "ajv";
-import {Client} from "../zeebe/Client";
+import {ZeebeClient} from "../zeebe/ZeebeClient";
 import {Http2ServerResponse, IncomingHttpHeaders} from "http2";
 
 const ajv = new Ajv()
@@ -17,9 +17,9 @@ const schemaValidator = <T>(schema: object, data: T): T => {
 }
 
 export class CloudeventsHandler {
-    protected zbc: Client;
+    protected zbc: ZeebeClient;
 
-    constructor(zbc: Client) {
+    constructor(zbc: ZeebeClient) {
         this.zbc = zbc;
     }
 

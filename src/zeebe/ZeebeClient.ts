@@ -23,7 +23,7 @@ interface ClientOptions {
     gatewayAddress: string;
 }
 
-export class Client {
+export class ZeebeClient {
     protected zbc: GatewayClient;
 
     constructor(options: ClientOptions) {

@@ -1,4 +1,5 @@
 import {Consumer, Kafka} from "kafkajs";
+import {ConsumerInterface} from "./ConsumerInterface";
 
 export interface KafkaConsumerOptions {
     clientId: string;
@@ -8,7 +9,7 @@ export interface KafkaConsumerOptions {
 }
 
 
-export class KafkaConsumer {
+export class KafkaConsumer implements ConsumerInterface {
     protected kafka: Kafka;
     protected consumer: Consumer;
     protected options: KafkaConsumerOptions;

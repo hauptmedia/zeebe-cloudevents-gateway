@@ -1,25 +1,26 @@
 import Http2Client from "../http2/Http2Client";
 import {Message} from "cloudevents/dist/message";
 import {CloudEvent, emitterFor, Mode} from "cloudevents";
-import {KafkaConsumer} from "../consumer/KafkaConsumer";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
+import {ConsumerInterface} from "../consumer/ConsumerInterface";
 
 export interface HttpSenderOptions {
     insecure: boolean;
     endpoint: string;
+    source: 'kafka' | 'hazelcast';
 }
 
 export class HttpSender {
-    protected kafkaConsumer: KafkaConsumer;
+    protected consumer: ConsumerInterface;
     protected options: HttpSenderOptions;
 
-    constructor(kafkaConsumer: KafkaConsumer, options: HttpSenderOptions) {
+    constructor(consumer: ConsumerInterface, options: HttpSenderOptions) {
         this.options = options;
 
         if(options.insecure)
             process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
-        this.kafkaConsumer = kafkaConsumer;
+        this.consumer = consumer;
     }
 
     start() {
@@ -51,7 +52,7 @@ export class HttpSender {
 
         const emit = emitterFor(http2Sender, { mode: Mode.BINARY });
 
-        this.kafkaConsumer.start((data, pause) =>{
+        this.consumer.start((data, pause) =>{
 
             if (!http2Session.connected) {
                 const resume = pause();

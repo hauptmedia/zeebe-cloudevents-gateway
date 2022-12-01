@@ -8,6 +8,7 @@ cloudevents:
     httpSender:
       insecure: false
       endpoint: https://localhost:4000
+      source: kafka
 
 consumer:
     kafka:

@@ -19,14 +19,18 @@ interface GRPCRequestFactory {
     fromJSON(object: any): any;
 }
 
-export class GrpcHandler {
+interface ClientOptions {
+    gatewayAddress: string;
+}
+
+export class Client {
     protected zbc: GatewayClient;
 
-    constructor() {
-        this.zbc = new GatewayClient("localhost:26500", ChannelCredentials.createInsecure());
+    constructor(options: ClientOptions) {
+        this.zbc = new GatewayClient(options.gatewayAddress, ChannelCredentials.createInsecure());
     }
 
-    protected _handler(grpcServiceFunction: string, grpcRequestFactory: GRPCRequestFactory, data: any): Promise<any> {
+    protected _requestHandler(grpcServiceFunction: string, grpcRequestFactory: GRPCRequestFactory, data: any): Promise<any> {
         return new Promise((resolve, reject) => {
             const grpcRequest = grpcRequestFactory.fromJSON(data);
 
@@ -40,46 +44,46 @@ export class GrpcHandler {
         });
     }
 
-    handle(type: string, data: any) {
+    request(type: string, data: any) {
         switch (type) {
             case 'CancelProcessInstanceRequest':
-                return this._handler('cancelProcessInstance', CompleteJobRequest, data);
+                return this._requestHandler('cancelProcessInstance', CompleteJobRequest, data);
 
             case 'CompleteJobRequest':
-                return this._handler('completeJob', CompleteJobRequest, data);
+                return this._requestHandler('completeJob', CompleteJobRequest, data);
 
             case 'CreateProcessInstanceRequest':
-                return this._handler('createProcessInstance', CreateProcessInstanceRequest, data);
+                return this._requestHandler('createProcessInstance', CreateProcessInstanceRequest, data);
 
             case 'CreateProcessInstanceWithResultRequest':
-                return this._handler('createProcessInstanceWithResult', CreateProcessInstanceWithResultRequest, data);
+                return this._requestHandler('createProcessInstanceWithResult', CreateProcessInstanceWithResultRequest, data);
 
             case 'DeployResourceRequest':
-                return this._handler('deployResource', DeployResourceRequest, data);
+                return this._requestHandler('deployResource', DeployResourceRequest, data);
 
             case 'FailJobRequest':
-                return this._handler('failJob', FailJobRequest, data);
+                return this._requestHandler('failJob', FailJobRequest, data);
 
             case 'ModifyProcessInstanceRequest':
-                return this._handler('modifyProcessInstance', ModifyProcessInstanceRequest, data);
+                return this._requestHandler('modifyProcessInstance', ModifyProcessInstanceRequest, data);
 
             case 'PublishMessageRequest':
-                return this._handler('publishMessage', PublishMessageRequest, data);
+                return this._requestHandler('publishMessage', PublishMessageRequest, data);
 
             case 'ResolveIncidentRequest':
-                return this._handler('resolveIncident', ResolveIncidentRequest, data);
+                return this._requestHandler('resolveIncident', ResolveIncidentRequest, data);
 
             case 'SetVariablesRequest':
-                return this._handler('setVariables', SetVariablesRequest, data);
+                return this._requestHandler('setVariables', SetVariablesRequest, data);
 
             case 'ThrowErrorRequest':
-                return this._handler('throwError', ThrowErrorRequest, data);
+                return this._requestHandler('throwError', ThrowErrorRequest, data);
 
             case 'TopologyRequest':
-                return this._handler('topology', TopologyRequest, data);
+                return this._requestHandler('topology', TopologyRequest, data);
 
             case 'UpdateJobRetriesRequest':
-                return this._handler('updateJobRetries', UpdateJobRetriesRequest, data)
+                return this._requestHandler('updateJobRetries', UpdateJobRetriesRequest, data)
 
             default:
                 throw `Unsupported request type: ${data}`

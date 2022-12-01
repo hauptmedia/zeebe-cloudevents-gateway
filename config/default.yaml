@@ -1,19 +1,22 @@
 cloudevents:
-    consumer:
-      httpListener:
-        port: 7777
-        host: 0.0.0.0
-        allowHTTP1: true
+    httpListener:
+      port: 7777
+      host: 0.0.0.0
+      allowHTTP1: true
 
-    producer:
-      httpSender:
-        insecure: false
-        endpoint: https://localhost:4000
+    httpSender:
+      insecure: false
+      endpoint: https://localhost:4000
 
-      kafkaConsumer:
-        clientId: zeebe-cloudevents-gateway
-        groupId: zeebe-cloudevents-gateway
-        topics:
-          - zeebe
-        brokers:
-          - localhost:9092
+consumer:
+    kafka:
+      clientId: zeebe-cloudevents-gateway
+      groupId: zeebe-cloudevents-gateway
+      topics:
+        - zeebe
+      brokers:
+        - localhost:9092
+
+zeebe:
+  client:
+    gatewayAddress: localhost:26500

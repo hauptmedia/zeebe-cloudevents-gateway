@@ -12,9 +12,9 @@ export class HttpListener {
     protected cloudeventsHandler: CloudeventsHandler;
     protected options: HttpServerOptions;
 
-    constructor(options: HttpServerOptions) {
+    constructor(cloudeventsHandler: CloudeventsHandler, options: HttpServerOptions) {
         this.options = options;
-        this.cloudeventsHandler = new CloudeventsHandler();
+        this.cloudeventsHandler = cloudeventsHandler;
     }
 
     start() {

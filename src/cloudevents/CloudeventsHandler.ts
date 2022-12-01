@@ -1,6 +1,6 @@
 import {CloudEvent, CloudEventV1, HTTP} from "cloudevents";
 import Ajv from "ajv";
-import {GrpcHandler} from "./GrpcHandler";
+import {Client} from "../zeebe/Client";
 import {Http2ServerResponse, IncomingHttpHeaders} from "http2";
 
 const ajv = new Ajv()
@@ -17,17 +17,17 @@ const schemaValidator = <T>(schema: object, data: T): T => {
 }
 
 export class CloudeventsHandler {
-    protected grpcHandler: GrpcHandler;
+    protected zbc: Client;
 
-    constructor() {
-        this.grpcHandler = new GrpcHandler();
+    constructor(zbc: Client) {
+        this.zbc = zbc;
     }
 
     async _handleCloudevent(cloudevent: CloudEventV1<any>): Promise<CloudEventV1<any>> {
         //TODO: validate JSON Schema const data = schemaValidator(schema, cloudevent.data);
 
         const grpcType = cloudevent.type.replace("io.zeebe.command.v1.","");
-        const responseData = await this.grpcHandler.handle(grpcType, cloudevent.data);
+        const responseData = await this.zbc.request(grpcType, cloudevent.data);
 
         return new CloudEvent({
             type: cloudevent.type.replace("Request", "Response"),

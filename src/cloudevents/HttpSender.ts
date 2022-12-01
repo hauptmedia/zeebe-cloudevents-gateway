@@ -1,7 +1,7 @@
-import Http2Client from "../../http2/Http2Client";
+import Http2Client from "../http2/Http2Client";
 import {Message} from "cloudevents/dist/message";
 import {CloudEvent, emitterFor, Mode} from "cloudevents";
-import {KafkaConsumer} from "./KafkaConsumer";
+import {KafkaConsumer} from "../consumer/KafkaConsumer";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 
 export interface HttpSenderOptions {

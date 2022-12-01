@@ -1,4 +1,9 @@
-import {CreateProcessInstanceRequest, DeployResourceRequest, GatewayClient} from "@hauptmedia/zeebe-gateway-types";
+import {
+    CreateProcessInstanceRequest,
+    DeployResourceRequest,
+    GatewayClient,
+    TopologyRequest
+} from "@hauptmedia/zeebe-gateway-types";
 import {ClientUnaryCall, ServiceError} from "@grpc/grpc-js";
 
 interface GRPCHandler {
@@ -27,5 +32,9 @@ export const GrpcHandlerRegistry = {
         handler(zbc.deployResource.bind(zbc), DeployResourceRequest, data),
 
     'io.zeebe.command.v1.CreateProcessInstanceRequest': (zbc: GatewayClient, data: any) =>
-        handler(zbc.createProcessInstance.bind(zbc), CreateProcessInstanceRequest, data)
+        handler(zbc.createProcessInstance.bind(zbc), CreateProcessInstanceRequest, data),
+
+    'io.zeebe.command.v1.TopologyRequest': (zbc: GatewayClient, data: any) =>
+        handler(zbc.topology.bind(zbc), TopologyRequest, data)
+
 }

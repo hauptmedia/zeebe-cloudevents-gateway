@@ -4,7 +4,16 @@ import {Message} from "cloudevents/dist/message";
 import {CloudEvent, emitterFor, Mode} from "cloudevents";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types/dist/esm";
 
+export interface HttpSenderOptions {
+    insecure: boolean;
+}
+
 export class HttpSender {
+    constructor(options: HttpSenderOptions) {
+        if(options.insecure)
+            process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+    }
+
     start() {
 
         const kafka = new Kafka({

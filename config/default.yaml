@@ -1,0 +1,3 @@
+cloudevents:
+    producer:
+      insecure: false

@@ -46,43 +46,43 @@ export class GrpcHandler {
 
     handle(type: string, data: any) {
         switch(type) {
-            case 'io.zeebe.command.v1.CancelProcessInstanceRequest':
+            case 'CancelProcessInstanceRequest':
                 return this._handler(this.zbc.cancelProcessInstance.bind(this.zbc), CompleteJobRequest, data);
 
-            case 'io.zeebe.command.v1.CompleteJobRequest':
+            case 'CompleteJobRequest':
                 return this._handler(this.zbc.completeJob.bind(this.zbc), CompleteJobRequest, data);
 
-            case 'io.zeebe.command.v1.CreateProcessInstanceRequest':
+            case 'CreateProcessInstanceRequest':
                 return this._handler(this.zbc.createProcessInstance.bind(this.zbc), CreateProcessInstanceRequest, data);
 
-            case 'io.zeebe.command.v1.CreateProcessInstanceWithResultRequest':
+            case 'CreateProcessInstanceWithResultRequest':
                 return this._handler(this.zbc.createProcessInstanceWithResult.bind(this.zbc), CreateProcessInstanceWithResultRequest, data);
 
-            case 'io.zeebe.command.v1.DeployResourceRequest':
+            case 'DeployResourceRequest':
                 return this._handler(this.zbc.deployResource.bind(this.zbc), DeployResourceRequest, data);
 
-            case 'io.zeebe.command.v1.FailJobRequest':
+            case 'FailJobRequest':
                 return this._handler(this.zbc.failJob.bind(this.zbc), FailJobRequest, data);
 
-            case 'io.zeebe.command.v1.ModifyProcessInstanceRequest':
+            case 'ModifyProcessInstanceRequest':
                 return this._handler(this.zbc.failJob.bind(this.zbc), ModifyProcessInstanceRequest, data);
 
-            case 'io.zeebe.command.v1.PublishMessageRequest':
+            case 'PublishMessageRequest':
                 return this._handler(this.zbc.publishMessage.bind(this.zbc), PublishMessageRequest, data);
 
-            case 'io.zeebe.command.v1.ResolveIncidentRequest':
+            case 'ResolveIncidentRequest':
                 return this._handler(this.zbc.resolveIncident.bind(this.zbc), ResolveIncidentRequest, data);
 
-            case 'io.zeebe.command.v1.SetVariablesRequest':
+            case 'SetVariablesRequest':
                 return this._handler(this.zbc.setVariables.bind(this.zbc), SetVariablesRequest, data);
 
-            case 'io.zeebe.command.v1.ThrowErrorRequest':
+            case 'ThrowErrorRequest':
                 return this._handler(this.zbc.throwError.bind(this.zbc), ThrowErrorRequest, data);
 
-            case 'io.zeebe.command.v1.TopologyRequest':
+            case 'TopologyRequest':
                 return this._handler(this.zbc.topology.bind(this.zbc), TopologyRequest, data);
 
-            case 'io.zeebe.command.v1.UpdateJobRetriesRequest':
+            case 'UpdateJobRetriesRequest':
                 return this._handler(this.zbc.updateJobRetries.bind(this.zbc), UpdateJobRetriesRequest, data)
         }
     }

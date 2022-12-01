@@ -32,7 +32,7 @@ export class CloudeventsHandler {
 
         } else {
 
-            const responseData = await this.grpcHandler.handle(cloudevent.type, cloudevent.data);
+            const responseData = await this.grpcHandler.handle(cloudevent.type.replace("io.zeebe.command.v1.",""), cloudevent.data);
 
             const responseCloudevent = new CloudEvent({
                 type: cloudevent.type.replace("Request", "Response"),

@@ -7,7 +7,7 @@ import {Message} from "cloudevents/dist/message";
 import {Options} from "cloudevents/dist/transport/emitter";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 import {Command} from "commander";
-import {CloudeventsHttpConsumer} from "./lib/consumer/CloudeventsHttpConsumer";
+import {HttpServer} from "./lib/consumer/HttpServer";
 
 dotenv.config();
 
@@ -21,7 +21,7 @@ const options = program.opts();
 if(options['insecure'])
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
-const ceConsumer = new CloudeventsHttpConsumer();
+const ceConsumer = new HttpServer();
 ceConsumer.start();
 
 const kafka = new Kafka({

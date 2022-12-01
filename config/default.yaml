@@ -3,6 +3,7 @@ cloudevents:
       port: 7777
       host: 0.0.0.0
       allowHTTP1: true
+      insecure: true
 
     httpSender:
       insecure: false

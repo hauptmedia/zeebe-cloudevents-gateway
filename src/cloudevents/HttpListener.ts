@@ -1,11 +1,15 @@
 import {createSecureServer} from "node:http2";
 import {readFileSync} from "node:fs";
 import {CloudeventsHandler} from "./CloudeventsHandler";
+import {createServer} from "http2";
 
 interface HttpServerOptions {
     port: number;
     host: string;
     allowHTTP1: boolean;
+    insecure: boolean;
+    cert: string;
+    key: string;
 }
 
 export class HttpListener {
@@ -18,11 +22,16 @@ export class HttpListener {
     }
 
     start() {
-        const server = createSecureServer({
-            cert: readFileSync("certs/localhost-cert.pem"),
-            key: readFileSync("certs/localhost-privkey.pem"),
-            allowHTTP1: this.options.allowHTTP1
-        });
+        let server;
+
+        if(this.options.insecure)
+            server = createServer();
+        else
+            server = createSecureServer({
+                cert: this.options.cert,
+                key: this.options.key,
+                allowHTTP1: this.options.allowHTTP1
+            });
 
 
         server.on('request', async (req, res) => {

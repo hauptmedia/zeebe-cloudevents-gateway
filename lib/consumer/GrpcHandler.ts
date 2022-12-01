@@ -1,11 +1,10 @@
-import {GatewayClient} from "@hauptmedia/zeebe-gateway-types";
-import {ChannelCredentials, ClientUnaryCall, ServiceError} from "@grpc/grpc-js";
 import {
     CompleteJobRequest,
     CreateProcessInstanceRequest,
     CreateProcessInstanceWithResultRequest,
     DeployResourceRequest,
     FailJobRequest,
+    GatewayClient,
     ModifyProcessInstanceRequest,
     PublishMessageRequest,
     ResolveIncidentRequest,
@@ -14,11 +13,7 @@ import {
     TopologyRequest,
     UpdateJobRetriesRequest
 } from "@hauptmedia/zeebe-gateway-types";
-
-
-interface GRPCHandler {
-    (request: any, callback: (error: ServiceError | null, response: any) => void): ClientUnaryCall
-}
+import {ChannelCredentials, ServiceError} from "@grpc/grpc-js";
 
 interface GRPCRequestFactory {
     fromJSON(object: any): any;
@@ -46,7 +41,7 @@ export class GrpcHandler {
     }
 
     handle(type: string, data: any) {
-        switch(type) {
+        switch (type) {
             case 'CancelProcessInstanceRequest':
                 return this._handler('cancelProcessInstance', CompleteJobRequest, data);
 

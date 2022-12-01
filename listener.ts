@@ -1,13 +1,14 @@
 import {createSecureServer} from "node:http2";
 import {readFileSync} from "node:fs";
-import {CloudEventV1, HTTP} from "cloudevents";
+import {CloudEvent, CloudEventV1, HTTP} from "cloudevents";
 import Ajv from "ajv"
 import {
     CreateProcessInstanceRequest,
     DeployResourceRequest,
     ZeebeGatewayCommandJsonSchemaRegistry, ZeebeGatewayCommandTypes, DeployResourceResponse, GatewayClient
 } from "@hauptmedia/zeebe-gateway-types";
-import {ChannelCredentials, ClientOptions, ServiceError} from "@grpc/grpc-js";
+import {ChannelCredentials, ClientOptions, ClientUnaryCall, ServiceError} from "@grpc/grpc-js";
+import {ProcessInstanceCreationIntent} from "@hauptmedia/zeebe-exporter-types";
 
 const ajv = new Ajv()
 
@@ -22,46 +23,71 @@ const server = createSecureServer({
 
 const zbc = new GatewayClient("localhost:26500", ChannelCredentials.createInsecure());
 
-const typedValidate = <T>(schema: object, data: T): T => {
+interface JSONConvertible {
+    fromJSON(object: any): DeployResourceRequest;
+    toJSON(message: DeployResourceRequest): unknown;
+}
+
+const validate = <T>(schema: object, data: T): T => {
     const validate = ajv.compile<T>(schema),
         isValid = validate(data);
 
-    if (!isValid)
+    if (!isValid) {
         throw validate.errors;
+    }
 
     return data;
 }
 
-const cloudEventHandler = async (cloudevent: CloudEventV1<any>) => {
-    const type = cloudevent.type as ZeebeGatewayCommandTypes,
-        schema = ZeebeGatewayCommandJsonSchemaRegistry[type];
+interface GRPCHandler {
+    (request: any, callback: (error: ServiceError | null, response: any) => void): ClientUnaryCall
+}
 
-    if(!schema)
+interface GRPCRequestFactory {
+    fromJSON(object: any): any;
+}
+
+const handler = (grpcServiceFunction: GRPCHandler, grpcRequestFactory: GRPCRequestFactory, data: any): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const grpcRequest = grpcRequestFactory.fromJSON(data);
+
+        grpcServiceFunction(grpcRequest, (error: ServiceError | null, response) => {
+            if(error)
+                reject(error)
+            else
+                resolve(response);
+        });
+    });
+}
+
+const handlerRegistry = {
+    'io.zeebe.command.v1.DeployResourceRequest': (zbc: GatewayClient, data: any) =>
+        handler(zbc.deployResource.bind(zbc), DeployResourceRequest, data),
+
+    'io.zeebe.command.v1.CreateProcessInstanceRequest': (zbc: GatewayClient, data: any) =>
+        handler(zbc.createProcessInstance.bind(zbc), CreateProcessInstanceRequest, data)
+
+}
+
+type testType = 'io.zeebe.command.v1.DeployResourceRequest'
+
+const cloudEventHandler = async (cloudevent: CloudEventV1<any>): Promise<CloudEventV1<any>> => {
+    const type = cloudevent.type as ZeebeGatewayCommandTypes,
+        schema = ZeebeGatewayCommandJsonSchemaRegistry[type],
+        handler = handlerRegistry[type as testType];
+
+    if (!schema)
         throw "Unknown type " + cloudevent.type;
 
-    let data;
+    const data = validate(schema, cloudevent.data);
 
-    switch(cloudevent.type) {
-        case 'io.zeebe.command.v1.DeployResourceRequest':
-            console.log(cloudevent.data);
-          //  data = typedValidate<DeployResourceRequest>(schema, cloudevent.data);
+    const responseData = await handler(zbc, data);
 
-            const req = DeployResourceRequest.fromJSON(cloudevent.data);
-            console.log(req);
-            zbc.deployResource(req, (error: ServiceError | null, response: DeployResourceResponse) => {
-                console.log(error);
-                console.log(response);
-
-            });
-
-/*        case 'io.zeebe.command.v1.CreateProcessInstance':
-            data = typedValidate<CreateProcessInstanceRequest>(schema, cloudevent.data);
-            return zbc.createProcessInstance({
-                bpmnProcessId: data.bpmnProcessId,
-                variables: data.variables,
-                version: data.version
-            });*/
-    }
+    return new CloudEvent({
+        type: cloudevent.type.replace("Request", "Response"),
+        source: 'source',
+        response: responseData
+    });
 }
 
 server.on('request', async(req, res) => {
@@ -77,13 +103,18 @@ server.on('request', async(req, res) => {
         const receivedEvent = HTTP.toEvent<object>({ headers: req.headers, body: body });
 
         if (Array.isArray(receivedEvent)) {
-            const res = await receivedEvent.forEach(cloudEventHandler);
-            console.log(res);
+            const cloudEventResponse = await receivedEvent.forEach(cloudEventHandler);
+            console.log(cloudEventResponse);
 
         } else {
 
-            const res = await cloudEventHandler(receivedEvent);
-            console.log(res);
+            const cloudEventResponse = await cloudEventHandler(receivedEvent);
+
+            res.writeHead(200);
+            res.write(JSON.stringify(cloudEventResponse));
+            res.end();
+
+            console.log(cloudEventResponse);
 
         }
 

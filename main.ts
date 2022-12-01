@@ -7,6 +7,7 @@ import {Message} from "cloudevents/dist/message";
 import {Options} from "cloudevents/dist/transport/emitter";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 import {Command} from "commander";
+import {CloudeventsHttpConsumer} from "./lib/consumer/CloudeventsHttpConsumer";
 
 dotenv.config();
 
@@ -19,6 +20,9 @@ const options = program.opts();
 
 if(options['insecure'])
     process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+
+const ceConsumer = new CloudeventsHttpConsumer();
+ceConsumer.start();
 
 const kafka = new Kafka({
     clientId: 'zeebe-connector',
@@ -49,10 +53,6 @@ const http2Sender = async(message: Message) => {
     });
     req.write(message.body);
     req.end();
-
-    console.log(message.headers['ce-type']);
-
-    console.log(JSON.parse(message.body as string));
 }
 
 const emit = emitterFor(http2Sender, { mode: Mode.BINARY });

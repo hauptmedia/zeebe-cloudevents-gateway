@@ -74,3 +74,5 @@ export const GrpcHandlerRegistry = {
     'io.zeebe.command.v1.UpdateJobRetriesRequest': (zbc: GatewayClient, data: any) =>
         handler(zbc.updateJobRetries.bind(zbc), UpdateJobRetriesRequest, data)
 }
+
+export type GrpcHandlerRegistryTypes = keyof typeof GrpcHandlerRegistry;

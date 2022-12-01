@@ -2,21 +2,26 @@ import {createSecureServer} from "node:http2";
 import {readFileSync} from "node:fs";
 import {CloudeventsHandler} from "./CloudeventsHandler";
 
+interface HttpServerOptions {
+    port: number;
+    host: string;
+    allowHTTP1: boolean;
+}
+
 export class HttpServer {
     protected cloudeventsHandler: CloudeventsHandler;
+    protected options: HttpServerOptions;
 
-    constructor() {
+    constructor(options: HttpServerOptions) {
+        this.options = options;
         this.cloudeventsHandler = new CloudeventsHandler();
     }
 
     start() {
-        const port = 7777,
-            host = "0.0.0.0";
-
         const server = createSecureServer({
             cert: readFileSync("certs/localhost-cert.pem"),
             key: readFileSync("certs/localhost-privkey.pem"),
-            allowHTTP1: true
+            allowHTTP1: this.options.allowHTTP1
         });
 
 
@@ -38,9 +43,10 @@ export class HttpServer {
         });
 
         server.listen({
-            port, host
+            port: this.options.port,
+            host: this.options.host
         }, () => {
-            console.info(`Server is running on https://${host}:${port}`)
+            console.info(`Server is running on https://${this.options.host}:${this.options.port}`)
         });
 
     }

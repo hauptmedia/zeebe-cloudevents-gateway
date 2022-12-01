@@ -1,4 +1,9 @@
 cloudevents:
+    consumer:
+      httpServer:
+        port: 7777
+        host: 0.0.0.0
+        allowHTTP1: true
     producer:
       httpSender:
         insecure: false

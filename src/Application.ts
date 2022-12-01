@@ -8,11 +8,11 @@ dotenv.config();
 
 export class Application {
     run() {
-        const ceConsumer = new HttpServer();
-        ceConsumer.start();
+        const cloudeventsConsumer = new HttpServer(config.get('cloudevents.consumer.httpServer'));
+        cloudeventsConsumer.start();
 
         const kafkaConsumer = new KafkaConsumer(config.get('cloudevents.producer.kafkaConsumer')),
-              cloudeventsSender = new HttpSender(kafkaConsumer, config.get('cloudevents.producer.httpSender'));
-        cloudeventsSender.start();
+              cloudeventsProducer = new HttpSender(kafkaConsumer, config.get('cloudevents.producer.httpSender'));
+        cloudeventsProducer.start();
     }
 }

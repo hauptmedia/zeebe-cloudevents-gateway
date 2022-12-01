@@ -23,30 +23,32 @@ export class CloudeventsHandler {
         this.grpcHandler = new GrpcHandler();
     }
 
+    async _handleCloudevent(cloudevent: CloudEventV1<any>): Promise<CloudEventV1<any>> {
+        //TODO: validate JSON Schema const data = schemaValidator(schema, cloudevent.data);
+
+        const grpcType = cloudevent.type.replace("io.zeebe.command.v1.","");
+        const responseData = await this.grpcHandler.handle(grpcType, cloudevent.data);
+
+        return new CloudEvent({
+            type: cloudevent.type.replace("Request", "Response"),
+            source: 'source',
+            response: responseData
+        });
+    }
+
     async handle(headers: IncomingHttpHeaders, body: string, res: Http2ServerResponse): Promise<void> {
         const cloudevent = HTTP.toEvent<object>({headers, body});
 
-        if (Array.isArray(cloudevent)) {
-            //     const cloudEventResponse = await receivedEvent.forEach(cloudEventHandler);
-            //     console.log(cloudEventResponse);
+        let response;
 
-        } else {
-
-            const responseData = await this.grpcHandler.handle(cloudevent.type.replace("io.zeebe.command.v1.",""), cloudevent.data);
-
-            const responseCloudevent = new CloudEvent({
-                type: cloudevent.type.replace("Request", "Response"),
-                source: 'source',
-                response: responseData
-            });
+        if (Array.isArray(cloudevent))
+            response = await Promise.all(cloudevent.map(async ce => await this._handleCloudevent(ce)));
+        else
+            response = await this._handleCloudevent(cloudevent);
 
 
-            res.writeHead(200);
-            res.write(JSON.stringify(responseCloudevent));
-            res.end();
-        }
-
-        //const data = schemaValidator(schema, cloudevent.data);
-
+        res.writeHead(200);
+        res.write(JSON.stringify(response));
+        res.end();
     }
 }

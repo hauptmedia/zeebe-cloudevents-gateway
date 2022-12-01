@@ -21,7 +21,6 @@ const schemaValidator = <T>(schema: object, data: T): T => {
 }
 
 export const cloudEventHandler = async (zbc: GatewayClient, cloudevent: CloudEventV1<any>): Promise<CloudEventV1<any>> => {
-    // @ts-ignore
     const type  = cloudevent.type,
         schema  = ZeebeGatewayCommandJsonSchemaRegistry[type as ZeebeGatewayCommandTypes],
         handler = GrpcHandlerRegistry[type as GrpcHandlerRegistryTypes];

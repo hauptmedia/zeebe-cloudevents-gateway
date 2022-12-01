@@ -1,3 +1,11 @@
 cloudevents:
     producer:
-      insecure: false
+      httpSender:
+        insecure: false
+      kafkaConsumer:
+        clientId: zeebe-cloudevents-gateway
+        groupId: zeebe-cloudevents-gateway
+        topics:
+          - zeebe
+        brokers:
+          - localhost:9092

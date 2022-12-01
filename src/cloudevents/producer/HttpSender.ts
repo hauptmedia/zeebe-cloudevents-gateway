@@ -1,28 +1,24 @@
-import {Kafka} from "kafkajs";
 import Http2Client from "../../http2/Http2Client";
 import {Message} from "cloudevents/dist/message";
 import {CloudEvent, emitterFor, Mode} from "cloudevents";
-import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types/dist/esm";
+import {KafkaConsumer} from "./KafkaConsumer";
+import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 
 export interface HttpSenderOptions {
     insecure: boolean;
 }
 
 export class HttpSender {
-    constructor(options: HttpSenderOptions) {
+    protected kafkaConsumer: KafkaConsumer;
+
+    constructor(kafkaConsumer: KafkaConsumer, options: HttpSenderOptions) {
         if(options.insecure)
             process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
+
+        this.kafkaConsumer = kafkaConsumer;
     }
 
     start() {
-
-        const kafka = new Kafka({
-            clientId: 'zeebe-connector',
-            brokers: ['localhost:9092']
-        })
-
-        const consumer = kafka.consumer({groupId: 'zeebe-connector'})
-
         const http2Session = Http2Client.connect("https://127.0.0.1:4000");
         http2Session.on('reconnect', (connectionAttemptNumber, reconnectDelay) => {
             console.log(`[http/2] session reconnect, attempt #${connectionAttemptNumber} scheduled in ${reconnectDelay}ms`);
@@ -49,38 +45,23 @@ export class HttpSender {
 
         const emit = emitterFor(http2Sender, { mode: Mode.BINARY });
 
-        const run = async () => {
-            await consumer.connect()
-            await consumer.subscribe({topic: "zeebe"})
+        this.kafkaConsumer.start((data, pause) =>{
 
-            await consumer.run({
-                eachMessage: async ({topic, partition, message, heartbeat, pause}) => {
-                    if (!message.value)
-                        return;
+            if (!http2Session.connected) {
+                const resume = pause();
+                http2Session.once('connect', resume);
+                throw "[http/2] session is not connected";
 
-                    const payloadAsString = message.value.toString();
-                    console.log(payloadAsString);
-                    if (!http2Session.connected) {
-                        const resume = pause();
-                        http2Session.once('connect', resume);
-                        throw "[http/2] session is not connected";
+            } else {
+                const zeebeRecord = JSON.parse(data) as ZeebeRecord<ValueType>,
+                    type = `io.zeebe.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}.${zeebeRecord.intent.toLowerCase()}`;
 
-                    } else {
-                        const zeebeRecord = JSON.parse(payloadAsString) as ZeebeRecord<ValueType>,
-                            type = `io.zeebe.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}.${zeebeRecord.intent.toLowerCase()}`;
-
-                        emit(new CloudEvent({
-                            type,
-                            source: "source",
-                            data: zeebeRecord.value
-                        }));
-                    }
-
-                    console.log(`[kafka] processed ${topic}/${partition}/${message.offset}`);
-                },
-            })
-        }
-
-        run().catch(console.error)
+                emit(new CloudEvent({
+                    type,
+                    source: "source",
+                    data: zeebeRecord.value
+                }));
+            }
+        });
     }
 }

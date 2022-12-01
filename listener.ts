@@ -8,7 +8,7 @@ import {
     ZeebeGatewayCommandJsonSchemaRegistry, ZeebeGatewayCommandTypes, DeployResourceResponse, GatewayClient
 } from "@hauptmedia/zeebe-gateway-types";
 import {ChannelCredentials, ClientOptions, ClientUnaryCall, ServiceError} from "@grpc/grpc-js";
-import {ProcessInstanceCreationIntent} from "@hauptmedia/zeebe-exporter-types";
+import {GrpcHandlerRegistry} from "./lib/consumer/GrpcHandlerRegistry";
 
 const ajv = new Ajv()
 
@@ -23,11 +23,6 @@ const server = createSecureServer({
 
 const zbc = new GatewayClient("localhost:26500", ChannelCredentials.createInsecure());
 
-interface JSONConvertible {
-    fromJSON(object: any): DeployResourceRequest;
-    toJSON(message: DeployResourceRequest): unknown;
-}
-
 const validate = <T>(schema: object, data: T): T => {
     const validate = ajv.compile<T>(schema),
         isValid = validate(data);
@@ -39,42 +34,13 @@ const validate = <T>(schema: object, data: T): T => {
     return data;
 }
 
-interface GRPCHandler {
-    (request: any, callback: (error: ServiceError | null, response: any) => void): ClientUnaryCall
-}
-
-interface GRPCRequestFactory {
-    fromJSON(object: any): any;
-}
-
-const handler = (grpcServiceFunction: GRPCHandler, grpcRequestFactory: GRPCRequestFactory, data: any): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        const grpcRequest = grpcRequestFactory.fromJSON(data);
-
-        grpcServiceFunction(grpcRequest, (error: ServiceError | null, response) => {
-            if(error)
-                reject(error)
-            else
-                resolve(response);
-        });
-    });
-}
-
-const handlerRegistry = {
-    'io.zeebe.command.v1.DeployResourceRequest': (zbc: GatewayClient, data: any) =>
-        handler(zbc.deployResource.bind(zbc), DeployResourceRequest, data),
-
-    'io.zeebe.command.v1.CreateProcessInstanceRequest': (zbc: GatewayClient, data: any) =>
-        handler(zbc.createProcessInstance.bind(zbc), CreateProcessInstanceRequest, data)
-
-}
 
 type testType = 'io.zeebe.command.v1.DeployResourceRequest'
 
 const cloudEventHandler = async (cloudevent: CloudEventV1<any>): Promise<CloudEventV1<any>> => {
     const type = cloudevent.type as ZeebeGatewayCommandTypes,
         schema = ZeebeGatewayCommandJsonSchemaRegistry[type],
-        handler = handlerRegistry[type as testType];
+        handler = GrpcHandlerRegistry[type as testType];
 
     if (!schema)
         throw "Unknown type " + cloudevent.type;

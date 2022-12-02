@@ -16,6 +16,13 @@ kafka:
     __name: "KAFKA_BROKERS"
     __format: json
 
+hazelcast:
+  ringbufferName: "HAZELCAST_RINGBUFFER_NAME"
+  clusterName: "HAZELCAST_CLUSTER_NAME"
+  clusterMembers:
+     __name: "HAZELCAST_CLUSTER_MEMBERS"
+     __format: json
+
 zeebe:
   client:
     gatewayAddress: "ZEEBE_CLIENT_GATEWAY_ADDRESS"

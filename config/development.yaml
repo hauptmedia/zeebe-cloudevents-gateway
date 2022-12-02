@@ -1,6 +1,7 @@
 cloudevents:
   httpSender:
     insecure: true
+    endpoint: https://localhost:4000
 #   source: hazelcast
 
   httpListener:
@@ -55,9 +56,8 @@ cloudevents:
       oWmV/hO0XK5q+XfaIA==
       -----END CERTIFICATE-----
 
-consumer:
-  hazelcast:
-    ringbufferName: zeebe
-    clusterName: dev
-    clusterMembers:
-      - localhost:5701
+hazelcast:
+  ringbufferName: zeebe
+  clusterName: dev
+  clusterMembers:
+    - localhost:5701

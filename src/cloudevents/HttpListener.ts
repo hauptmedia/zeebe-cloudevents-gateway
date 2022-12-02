@@ -55,7 +55,7 @@ export class HttpListener {
             port: this.options.port,
             host: this.options.host
         }, () => {
-            console.info(`Server is running on https://${this.options.host}:${this.options.port}`)
+            console.info(`[httpListener] is running on https://${this.options.host}:${this.options.port}`)
         });
 
     }

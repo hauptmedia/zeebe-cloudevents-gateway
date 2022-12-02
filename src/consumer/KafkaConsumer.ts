@@ -15,6 +15,8 @@ export class KafkaConsumer implements ConsumerInterface {
     protected options: KafkaConsumerOptions;
 
     constructor(options: KafkaConsumerOptions) {
+        console.log(`[KafkaConsumer] Registering to topics ${options.topics.join(",")}`)
+
         this.options = options;
 
         this.kafka = new Kafka({

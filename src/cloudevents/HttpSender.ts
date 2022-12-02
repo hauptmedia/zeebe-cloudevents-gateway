@@ -24,6 +24,7 @@ export class HttpSender {
     }
 
     start() {
+        console.log(`[httpSender] using endpoint ${this.options.endpoint}`)
         const endpoint = new URL(this.options.endpoint);
         const http2Session = Http2Client.connect(`${endpoint.protocol}//${endpoint.host}`);
 

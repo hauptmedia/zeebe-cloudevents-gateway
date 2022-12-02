@@ -1,0 +1,21 @@
+cloudevents:
+  httpListener:
+    host: "CLOUDEVENTS_HTTP_LISTENER_HOST"
+    port: "CLOUDEVENTS_HTTP_LISTENER_PORT"
+
+  httpSender:
+    endpoint: "CLOUDEVENTS_HTTP_SENDER_ENDPOINT"
+
+kafka:
+  clientId: "KAFKA_CLIENT_ID"
+  groupId: "KAFKA_GROUP_ID"
+  topics:
+    __name: "KAFKA_TOPICS"
+    __format: json
+  brokers:
+    __name: "KAFKA_BROKERS"
+    __format: json
+
+zeebe:
+  client:
+    gatewayAddress: "ZEEBE_CLIENT_GATEWAY_ADDRESS"

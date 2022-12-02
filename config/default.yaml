@@ -1,23 +1,21 @@
 cloudevents:
     httpListener:
-      port: 7777
       host: 0.0.0.0
+      port: 8080
       allowHTTP1: true
       insecure: true
 
     httpSender:
       insecure: false
-      endpoint: https://localhost:4000
       source: kafka
 
-consumer:
-    kafka:
-      clientId: zeebe-cloudevents-gateway
-      groupId: zeebe-cloudevents-gateway
-      topics:
-        - zeebe
-      brokers:
-        - localhost:9092
+kafka:
+  clientId: zeebe-cloudevents-gateway
+  groupId: zeebe-cloudevents-gateway
+  topics:
+    - zeebe
+  brokers:
+    - localhost:9092
 
 zeebe:
   client:

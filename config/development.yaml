@@ -1,11 +1,11 @@
 cloudevents:
   httpSender:
-    insecure: true
+    secure: false
     endpoint: https://localhost:4000
 #   source: hazelcast
 
   httpListener:
-    insecure: false
+    secure: true
     key: |
       -----BEGIN PRIVATE KEY-----
       MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDaL5RRzGGU/p3F

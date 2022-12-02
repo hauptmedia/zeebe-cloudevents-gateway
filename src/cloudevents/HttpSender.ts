@@ -5,7 +5,7 @@ import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 import {ConsumerInterface} from "../consumer/ConsumerInterface";
 
 export interface HttpSenderOptions {
-    insecure: boolean;
+    secure: boolean;
     endpoint: string;
     source: 'kafka' | 'hazelcast';
 }
@@ -17,7 +17,7 @@ export class HttpSender {
     constructor(consumer: ConsumerInterface, options: HttpSenderOptions) {
         this.options = options;
 
-        if(options.insecure)
+        if(!options.secure)
             process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 
         this.consumer = consumer;

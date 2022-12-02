@@ -1,5 +1,4 @@
 import {createSecureServer} from "node:http2";
-import {readFileSync} from "node:fs";
 import {CloudeventsHandler} from "./CloudeventsHandler";
 import {createServer} from "http2";
 
@@ -7,7 +6,7 @@ interface HttpServerOptions {
     port: number;
     host: string;
     allowHTTP1: boolean;
-    insecure: boolean;
+    secure: boolean;
     cert: string;
     key: string;
 }
@@ -24,7 +23,7 @@ export class HttpListener {
     start() {
         let server;
 
-        if(this.options.insecure)
+        if(!this.options.secure)
             server = createServer();
         else
             server = createSecureServer({

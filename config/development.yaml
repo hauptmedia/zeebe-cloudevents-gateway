@@ -2,9 +2,10 @@ cloudevents:
   httpSender:
     secure: false
     endpoint: https://localhost:4000
-#   source: hazelcast
+    source: hazelcast
 
   httpListener:
+    host: 127.0.0.1
     secure: true
     key: |
       -----BEGIN PRIVATE KEY-----

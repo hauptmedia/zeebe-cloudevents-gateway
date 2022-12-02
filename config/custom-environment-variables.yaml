@@ -1,28 +1,37 @@
 cloudevents:
   httpListener:
-    host: "CLOUDEVENTS_HTTP_LISTENER_HOST"
-    port: "CLOUDEVENTS_HTTP_LISTENER_PORT"
+    host: CLOUDEVENTS_HTTP_LISTENER_HOST
+    port: CLOUDEVENTS_HTTP_LISTENER_PORT
+    secure:
+      __name: CLOUDEVENTS_HTTP_LISTENER_SECURE
+      __type: boolean
+    key: CLOUDEVENTS_HTTP_LISTENER_KEY
+    cert: CLOUDEVENTS_HTTP_LISTENER_CERT
 
   httpSender:
-    endpoint: "CLOUDEVENTS_HTTP_SENDER_ENDPOINT"
+    source: CLOUDEVENTS_HTTP_SENDER_SOURCE
+    endpoint: CLOUDEVENTS_HTTP_SENDER_ENDPOINT
+    secure:
+      __name: CLOUDEVENTS_HTTP_SENDER_SECURE
+      __format: boolean
 
 kafka:
-  clientId: "KAFKA_CLIENT_ID"
-  groupId: "KAFKA_GROUP_ID"
+  clientId: KAFKA_CLIENT_ID
+  groupId: KAFKA_GROUP_ID
   topics:
-    __name: "KAFKA_TOPICS"
+    __name: KAFKA_TOPICS
     __format: json
   brokers:
-    __name: "KAFKA_BROKERS"
+    __name: KAFKA_BROKERS
     __format: json
 
 hazelcast:
-  ringbufferName: "HAZELCAST_RINGBUFFER_NAME"
-  clusterName: "HAZELCAST_CLUSTER_NAME"
+  ringbufferName: HAZELCAST_RINGBUFFER_NAME
+  clusterName: HAZELCAST_CLUSTER_NAME
   clusterMembers:
-     __name: "HAZELCAST_CLUSTER_MEMBERS"
+     __name: HAZELCAST_CLUSTER_MEMBERS
      __format: json
 
 zeebe:
   client:
-    gatewayAddress: "ZEEBE_CLIENT_GATEWAY_ADDRESS"
+    gatewayAddress: ZEEBE_CLIENT_GATEWAY_ADDRESS

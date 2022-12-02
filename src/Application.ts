@@ -22,7 +22,7 @@ export class Application {
             source = httpSenderConfiguration.source == 'kafka' ?
                 new KafkaConsumer(config.get('kafka')) :
                 new HazelcastConsumer(config.get('hazelcast'));
-console.log(httpSenderConfiguration);
+
         const cloudeventsProducer = new HttpSender(source, httpSenderConfiguration);
         cloudeventsProducer.start();
     }

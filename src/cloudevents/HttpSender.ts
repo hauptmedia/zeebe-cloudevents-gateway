@@ -24,6 +24,10 @@ export class HttpSender {
     }
 
     start() {
+        if(!this.options.endpoint) {
+            console.error(`[httpSender] no http endpoint specified, define one via config file or via CLOUDEVENTS_HTTP_SENDER_ENDPOINT environment variable`)
+            return;
+        }
         console.log(`[httpSender] using endpoint ${this.options.endpoint}`)
         const endpoint = new URL(this.options.endpoint);
         const http2Session = Http2Client.connect(`${endpoint.protocol}//${endpoint.host}`);

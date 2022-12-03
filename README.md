@@ -7,7 +7,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 # Zeebe Cloudevents Commands
 
 This Cloudevents gateway consumes the following Cloudevents via the integrated http listener.
-Any Cloudevent with a request type produces the corresponding response Cloudevent on the originating channel.
+Any Cloudevent with a request type produces the corresponding response Cloudevent on the originating channel (e.g. as HTTP response).
 This is basically a thin translation layer for the Zeebe gRPC gateway protocol.
 
 | Message Type                                                | Json Schema                                                                                                                         |

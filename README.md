@@ -12,8 +12,6 @@ This is basically a thin translation layer for the Zeebe gRPC gateway protocol.
 
 | Message Type                                                | Json Schema                                                                                                                         |
 |-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| io.zeebe.command.v1.ActivateJobsRequest                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ActivateJobsRequest.json)                   |
-| io.zeebe.command.v1.ActivateJobsResponse                    | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ActivateJobsResponse.json)                  |
 | io.zeebe.command.v1.CancelProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceRequest.json)          |
 | io.zeebe.command.v1.CancelProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceResponse.json)         |
 | io.zeebe.command.v1.CompleteJobRequest                      | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CompleteJobRequest.json)                    |

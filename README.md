@@ -41,256 +41,258 @@ This is basically a thin translation layer for the Zeebe gRPC gateway protocol.
 
 # Zeebe Cloudevents Events
 
+This Cloudevents gateway produces the following events via the integrated http sender sink.
+
 ## Decision
 
 [Decision JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Decision.json)
 
-| Event Type                         | Description |
-|------------------------------------|-------------|
-| io.zeebe.event.v1.Decision.created | TBD         |
+| Event Type                         |
+|------------------------------------|
+| io.zeebe.event.v1.Decision.created |
 
 ## Decision Evaluation
 
 [DecisionEvaluation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionEvaluation.json)
 
-| Event Type                                     | Description |
-|------------------------------------------------|-------------|
-| io.zeebe.event.v1.DecisionEvaluation.evaluated | TBD         |
-| io.zeebe.event.v1.DecisionEvaluation.failed    | TBD         |
+| Event Type                                     |
+|------------------------------------------------|
+| io.zeebe.event.v1.DecisionEvaluation.evaluated |
+| io.zeebe.event.v1.DecisionEvaluation.failed    |
 
 ## Decision Requirements
 
 [DecisionRequirements JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionRequirements.json)
 
-| Event Type                                     | Description |
-|------------------------------------------------|-------------|
-| io.zeebe.event.v1.DecisionRequirements.created | TBD         |
+| Event Type                                     |
+|------------------------------------------------|
+| io.zeebe.event.v1.DecisionRequirements.created |
 
 ## Deployment
 
 [Deployment JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Deployment.json)
 
-| Event Type                                    | Description |
-|-----------------------------------------------|-------------|
-| io.zeebe.event.v1.Deployment.create           | TBD         |
-| io.zeebe.event.v1.Deployment.created          | TBD         |
-| io.zeebe.event.v1.Deployment.distribute       | TBD         |
-| io.zeebe.event.v1.Deployment.distributed      | TBD         |
-| io.zeebe.event.v1.Deployment.fullyDistributed | TBD         |
+| Event Type                                    |
+|-----------------------------------------------|
+| io.zeebe.event.v1.Deployment.create           |
+| io.zeebe.event.v1.Deployment.created          |
+| io.zeebe.event.v1.Deployment.distribute       |
+| io.zeebe.event.v1.Deployment.distributed      |
+| io.zeebe.event.v1.Deployment.fullyDistributed |
 
 ## Deployment Distribution
 
 [DeploymentDistribution JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DeploymentDistribution.json)
 
-| Event Type                                            | Description |
-|-------------------------------------------------------|-------------|
-| io.zeebe.event.v1.DeploymentDistribution.distributing | TBD         |
-| io.zeebe.event.v1.DeploymentDistribution.complete     | TBD         |
-| io.zeebe.event.v1.DeploymentDistribution.completed    | TBD         |
+| Event Type                                            |
+|-------------------------------------------------------|
+| io.zeebe.event.v1.DeploymentDistribution.distributing |
+| io.zeebe.event.v1.DeploymentDistribution.complete     |
+| io.zeebe.event.v1.DeploymentDistribution.completed    |
 
 ## Error
 
 [Error JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Error.json)
 
-| Event Type                      | Description |
-|---------------------------------|-------------|
-| io.zeebe.event.v1.Error.created | TBD         |
+| Event Type                      |
+|---------------------------------|
+| io.zeebe.event.v1.Error.created |
 
 
 ## Escalation
 
 [Escalation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Escalation.json)
 
-| Event Type                                | Description |
-|-------------------------------------------|-------------|
-| io.zeebe.event.v1.Escalation.escalated    | TBD         |
-| io.zeebe.event.v1.Escalation.notEscalated | TBD         |
+| Event Type                                |
+|-------------------------------------------|
+| io.zeebe.event.v1.Escalation.escalated    |
+| io.zeebe.event.v1.Escalation.notEscalated |
 
 
 ## Incident
 
 [Incident JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Incident.json)
 
-| Event Type                          | Description |
-|-------------------------------------|-------------|
-| io.zeebe.event.v1.Incident.created  | TBD         |
-| io.zeebe.event.v1.Incident.resolve  | TBD         |
-| io.zeebe.event.v1.Incident.resolved | TBD         |
+| Event Type                          |
+|-------------------------------------|
+| io.zeebe.event.v1.Incident.created  |
+| io.zeebe.event.v1.Incident.resolve  |
+| io.zeebe.event.v1.Incident.resolved |
 
 ## Job
 
 [Job JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Job.json)
 
-| Event Type                                 | Description |
-|--------------------------------------------|-------------|
-| io.zeebe.event.v1.Job.created              | TBD         |
-| io.zeebe.event.v1.Job.complete             | TBD         |
-| io.zeebe.event.v1.Job.completed            | TBD         |
-| io.zeebe.event.v1.Job.timeOut              | TBD         |
-| io.zeebe.event.v1.Job.timedOut             | TBD         |
-| io.zeebe.event.v1.Job.fail                 | TBD         |
-| io.zeebe.event.v1.Job.failed               | TBD         |
-| io.zeebe.event.v1.Job.updateRetries        | TBD         |
-| io.zeebe.event.v1.Job.retriesUpdated       | TBD         |
-| io.zeebe.event.v1.Job.canceled             | TBD         |
-| io.zeebe.event.v1.Job.throwError           | TBD         |
-| io.zeebe.event.v1.Job.errorThrown          | TBD         |
-| io.zeebe.event.v1.Job.recurAfterBackoff    | TBD         |
-| io.zeebe.event.v1.Job.recurredAfterBackoff | TBD         |
+| Event Type                                 |
+|--------------------------------------------|
+| io.zeebe.event.v1.Job.created              |
+| io.zeebe.event.v1.Job.complete             |
+| io.zeebe.event.v1.Job.completed            |
+| io.zeebe.event.v1.Job.timeOut              |
+| io.zeebe.event.v1.Job.timedOut             |
+| io.zeebe.event.v1.Job.fail                 |
+| io.zeebe.event.v1.Job.failed               |
+| io.zeebe.event.v1.Job.updateRetries        |
+| io.zeebe.event.v1.Job.retriesUpdated       |
+| io.zeebe.event.v1.Job.canceled             |
+| io.zeebe.event.v1.Job.throwError           |
+| io.zeebe.event.v1.Job.errorThrown          |
+| io.zeebe.event.v1.Job.recurAfterBackoff    |
+| io.zeebe.event.v1.Job.recurredAfterBackoff |
 
 ## Job Batch
 
 [JobBatch JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/JobBatch.json)
 
-| Event Type                           | Description |
-|--------------------------------------|-------------|
-| io.zeebe.event.v1.JobBatch.activate  | TBD         |
-| io.zeebe.event.v1.JobBatch.activated | TBD         |
+| Event Type                           |
+|--------------------------------------|
+| io.zeebe.event.v1.JobBatch.activate  |
+| io.zeebe.event.v1.JobBatch.activated |
 
 ## Message
 
 [Message JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Message.json)
 
-| Event Type                          | Description |
-|-------------------------------------|-------------|
-| io.zeebe.event.v1.Message.publish   | TBD         |
-| io.zeebe.event.v1.Message.published | TBD         |
-| io.zeebe.event.v1.Message.expire    | TBD         |
-| io.zeebe.event.v1.Message.expired   | TBD         |
+| Event Type                          |
+|-------------------------------------|
+| io.zeebe.event.v1.Message.publish   |
+| io.zeebe.event.v1.Message.published |
+| io.zeebe.event.v1.Message.expire    |
+| io.zeebe.event.v1.Message.expired   |
 
 ## Message Start Event Subscription
 
 [MessageStartEventSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageStartEventSubscription.json)
 
-| Event Type                                                 | Description |
-|------------------------------------------------------------|-------------|
-| io.zeebe.event.v1.MessageStartEventSubscription.created    | TBD         |
-| io.zeebe.event.v1.MessageStartEventSubscription.correlated | TBD         |
-| io.zeebe.event.v1.MessageStartEventSubscription.deleted    | TBD         |
+| Event Type                                                 |
+|------------------------------------------------------------|
+| io.zeebe.event.v1.MessageStartEventSubscription.created    |
+| io.zeebe.event.v1.MessageStartEventSubscription.correlated |
+| io.zeebe.event.v1.MessageStartEventSubscription.deleted    |
 
 ## Message Subscription
 
 [MessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageSubscription.json)
 
-| Event Type                                        | Description |
-|---------------------------------------------------|-------------|
-| io.zeebe.event.v1.MessageSubscription.create      | TBD         |
-| io.zeebe.event.v1.MessageSubscription.created     | TBD         |
-| io.zeebe.event.v1.MessageSubscription.correlating | TBD         |
-| io.zeebe.event.v1.MessageSubscription.correlate   | TBD         |
-| io.zeebe.event.v1.MessageSubscription.correlated  | TBD         |
-| io.zeebe.event.v1.MessageSubscription.reject      | TBD         |
-| io.zeebe.event.v1.MessageSubscription.rejected    | TBD         |
-| io.zeebe.event.v1.MessageSubscription.delete      | TBD         |
-| io.zeebe.event.v1.MessageSubscription.deleted     | TBD         |
+| Event Type                                        |
+|---------------------------------------------------|
+| io.zeebe.event.v1.MessageSubscription.create      |
+| io.zeebe.event.v1.MessageSubscription.created     |
+| io.zeebe.event.v1.MessageSubscription.correlating |
+| io.zeebe.event.v1.MessageSubscription.correlate   |
+| io.zeebe.event.v1.MessageSubscription.correlated  |
+| io.zeebe.event.v1.MessageSubscription.reject      |
+| io.zeebe.event.v1.MessageSubscription.rejected    |
+| io.zeebe.event.v1.MessageSubscription.delete      |
+| io.zeebe.event.v1.MessageSubscription.deleted     |
 
 ## Process
 
 [Process JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Process.json)
 
-| Event Type                        | Description |
-|-----------------------------------|-------------|
-| io.zeebe.event.v1.Process.created | TBD         |
+| Event Type                        |
+|-----------------------------------|
+| io.zeebe.event.v1.Process.created |
 
 ## Process Event
 
 [ProcessEvent JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessEvent.json)
 
-| Event Type                                | Description |
-|-------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessEvent.triggering | TBD         |
-| io.zeebe.event.v1.ProcessEvent.triggered  | TBD         |
+| Event Type                                |
+|-------------------------------------------|
+| io.zeebe.event.v1.ProcessEvent.triggering |
+| io.zeebe.event.v1.ProcessEvent.triggered  |
 
 
 ## Process Instance
 
 [ProcessInstance JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstance.json)
 
-| Event Type                                           | Description |
-|------------------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessInstance.cancel             | TBD         |
-| io.zeebe.event.v1.ProcessInstance.sequenceFlowTaken  | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementActivating  | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementActivated   | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementCompleting  | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementCompleted   | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementTerminating | TBD         |
-| io.zeebe.event.v1.ProcessInstance.elementTerminated  | TBD         |
-| io.zeebe.event.v1.ProcessInstance.activateElement    | TBD         |
-| io.zeebe.event.v1.ProcessInstance.completeElement    | TBD         |
-| io.zeebe.event.v1.ProcessInstance.terminateElement   | TBD         |
+| Event Type                                           |
+|------------------------------------------------------|
+| io.zeebe.event.v1.ProcessInstance.cancel             |
+| io.zeebe.event.v1.ProcessInstance.sequenceFlowTaken  |
+| io.zeebe.event.v1.ProcessInstance.elementActivating  |
+| io.zeebe.event.v1.ProcessInstance.elementActivated   |
+| io.zeebe.event.v1.ProcessInstance.elementCompleting  |
+| io.zeebe.event.v1.ProcessInstance.elementCompleted   |
+| io.zeebe.event.v1.ProcessInstance.elementTerminating |
+| io.zeebe.event.v1.ProcessInstance.elementTerminated  |
+| io.zeebe.event.v1.ProcessInstance.activateElement    |
+| io.zeebe.event.v1.ProcessInstance.completeElement    |
+| io.zeebe.event.v1.ProcessInstance.terminateElement   |
 
 ## Process Instance Creation
 
 [ProcessInstanceCreation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceCreation.json)
 
-| Event Type                                                         | Description |
-|--------------------------------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessInstanceCreation.create                   | TBD         |
-| io.zeebe.event.v1.ProcessInstanceCreation.created                  | TBD         |
-| io.zeebe.event.v1.ProcessInstanceCreation.createWithAwaitingResult | TBD         |
+| Event Type                                                         |
+|--------------------------------------------------------------------|
+| io.zeebe.event.v1.ProcessInstanceCreation.create                   |
+| io.zeebe.event.v1.ProcessInstanceCreation.created                  |
+| io.zeebe.event.v1.ProcessInstanceCreation.createWithAwaitingResult |
 
 ## Process Instance Modification
 
 [ProcessInstanceModification JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceModification.json)
 
-| Event Type                                              | Description |
-|---------------------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessInstanceModification.modify    | TBD         |
-| io.zeebe.event.v1.ProcessInstanceModification.modified  | TBD         |
+| Event Type                                              |
+|---------------------------------------------------------|
+| io.zeebe.event.v1.ProcessInstanceModification.modify    |
+| io.zeebe.event.v1.ProcessInstanceModification.modified  |
 
 
 ## Process Instance Result
 
 [ProcessInstanceResult JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceResult.json)
 
-| Event Type                                        | Description |
-|---------------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessInstanceResult.completed | TBD         |
+| Event Type                                        |
+|---------------------------------------------------|
+| io.zeebe.event.v1.ProcessInstanceResult.completed |
 
 
 ## Process Message Subscription
 
 [ProcessMessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessMessageSubscription.json)
 
-| Event Type                                              | Description |
-|---------------------------------------------------------|-------------|
-| io.zeebe.event.v1.ProcessMessageSubscription.creating   | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.create     | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.created    | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.correlate  | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.correlated | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.deleting   | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.delete     | TBD         |
-| io.zeebe.event.v1.ProcessMessageSubscription.deleted    | TBD         |
+| Event Type                                              |
+|---------------------------------------------------------|
+| io.zeebe.event.v1.ProcessMessageSubscription.creating   |
+| io.zeebe.event.v1.ProcessMessageSubscription.create     |
+| io.zeebe.event.v1.ProcessMessageSubscription.created    |
+| io.zeebe.event.v1.ProcessMessageSubscription.correlate  |
+| io.zeebe.event.v1.ProcessMessageSubscription.correlated |
+| io.zeebe.event.v1.ProcessMessageSubscription.deleting   |
+| io.zeebe.event.v1.ProcessMessageSubscription.delete     |
+| io.zeebe.event.v1.ProcessMessageSubscription.deleted    |
 
 ## Timer
 
 [Timer JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Timer.json)
 
-| Event Type                        | Description |
-|-----------------------------------|-------------|
-| io.zeebe.event.v1.Timer.created   | TBD         |
-| io.zeebe.event.v1.Timer.trigger   | TBD         |
-| io.zeebe.event.v1.Timer.triggered | TBD         |
-| io.zeebe.event.v1.Timer.canceled  | TBD         |
+| Event Type                        |
+|-----------------------------------|
+| io.zeebe.event.v1.Timer.created   |
+| io.zeebe.event.v1.Timer.trigger   |
+| io.zeebe.event.v1.Timer.triggered |
+| io.zeebe.event.v1.Timer.canceled  |
 
 ## Variable
 
 [Variable JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Variable.json)
 
-| Event Type                         | Description |
-|------------------------------------|-------------|
-| io.zeebe.event.v1.Variable.created | TBD         |
-| io.zeebe.event.v1.Variable.updated | TBD         |
+| Event Type                         |
+|------------------------------------|
+| io.zeebe.event.v1.Variable.created |
+| io.zeebe.event.v1.Variable.updated |
 
 ## Variable Document
 
 [VariableDocument JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/VariableDocument.json)
 
-| Event Type                                 | Description |
-|--------------------------------------------|-------------|
-| io.zeebe.event.v1.VariableDocument.update  | TBD         |
-| io.zeebe.event.v1.VariableDocument.updated | TBD         |
+| Event Type                                 |
+|--------------------------------------------|
+| io.zeebe.event.v1.VariableDocument.update  |
+| io.zeebe.event.v1.VariableDocument.updated |
 
 

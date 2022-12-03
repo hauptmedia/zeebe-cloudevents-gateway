@@ -8,7 +8,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Decision
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.decision.json)
+[Decision JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Decision.json)
 
 | Event Type                         | Description |
 |------------------------------------|-------------|
@@ -16,7 +16,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Decision Evaluation
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.decision_evaluation.json)
+[DecisionEvaluation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionEvaluation.json)
 
 | Event Type                                     | Description |
 |------------------------------------------------|-------------|
@@ -25,7 +25,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Decision Requirements
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.decision_requirements.json)
+[DecisionRequirements JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionRequirements.json)
 
 | Event Type                                     | Description |
 |------------------------------------------------|-------------|
@@ -33,7 +33,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Deployment
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.deployment.json)
+[Deployment JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Deployment.json)
 
 | Event Type                                    | Description |
 |-----------------------------------------------|-------------|
@@ -45,7 +45,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Deployment Distribution
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.deployment_distribution.json)
+[DeploymentDistribution JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DeploymentDistribution.json)
 
 | Event Type                                            | Description |
 |-------------------------------------------------------|-------------|
@@ -55,7 +55,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Error
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.error.json)
+[Error JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Error.json)
 
 | Event Type                      | Description |
 |---------------------------------|-------------|
@@ -64,7 +64,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Escalation
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.escalation.json)
+[Escalation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Escalation.json)
 
 | Event Type                                | Description |
 |-------------------------------------------|-------------|
@@ -74,7 +74,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Incident
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.incident.json)
+[Incident JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Incident.json)
 
 | Event Type                          | Description |
 |-------------------------------------|-------------|
@@ -84,7 +84,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Job
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.job.json)
+[Job JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Job.json)
 
 | Event Type                                 | Description |
 |--------------------------------------------|-------------|
@@ -105,7 +105,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Job Batch
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.job_batch.json)
+[JobBatch JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/JobBatch.json)
 
 | Event Type                           | Description |
 |--------------------------------------|-------------|
@@ -114,7 +114,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Message
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.message.json)
+[Message JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Message.json)
 
 | Event Type                          | Description |
 |-------------------------------------|-------------|
@@ -125,7 +125,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Message Start Event Subscription
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.message_start_event_subscription.json)
+[MessageStartEventSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageStartEventSubscription.json)
 
 | Event Type                                                 | Description |
 |------------------------------------------------------------|-------------|
@@ -135,7 +135,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Message Subscription
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.message_subscription.json)
+[MessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageSubscription.json)
 
 | Event Type                                        | Description |
 |---------------------------------------------------|-------------|
@@ -151,7 +151,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process.json)
+[Process JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Process.json)
 
 | Event Type                        | Description |
 |-----------------------------------|-------------|
@@ -159,7 +159,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Event
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_event.json)
+[ProcessEvent JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessEvent.json)
 
 | Event Type                                | Description |
 |-------------------------------------------|-------------|
@@ -169,7 +169,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Instance
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_instance.json)
+[ProcessInstance JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstance.json)
 
 | Event Type                                           | Description |
 |------------------------------------------------------|-------------|
@@ -187,7 +187,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Instance Creation
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_instance_creation.json)
+[ProcessInstanceCreation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceCreation.json)
 
 | Event Type                                                         | Description |
 |--------------------------------------------------------------------|-------------|
@@ -197,7 +197,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Instance Modification
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_instance_modification.json)
+[ProcessInstanceModification JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceModification.json)
 
 | Event Type                                              | Description |
 |---------------------------------------------------------|-------------|
@@ -207,7 +207,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Instance Result
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_instance_result.json)
+[ProcessInstanceResult JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceResult.json)
 
 | Event Type                                        | Description |
 |---------------------------------------------------|-------------|
@@ -216,7 +216,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Process Message Subscription
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.process_message_subscription.json)
+[ProcessMessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessMessageSubscription.json)
 
 | Event Type                                              | Description |
 |---------------------------------------------------------|-------------|
@@ -231,7 +231,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Timer
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.timer.json)
+[Timer JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Timer.json)
 
 | Event Type                        | Description |
 |-----------------------------------|-------------|
@@ -242,7 +242,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Variable
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.variable.json)
+[Variable JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Variable.json)
 
 | Event Type                         | Description |
 |------------------------------------|-------------|
@@ -251,7 +251,7 @@ Maps Zeebe Event Protocol Records to [Cloudevents.io](https://cloudevents.io) co
 
 ## Variable Document
 
-[JSON Schema](https://github.com/hauptmedia/zeebe-exporter-types/tree/main/jsonschema/io.zeebe.event.variable_document.json)
+[VariableDocument JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/VariableDocument.json)
 
 | Event Type                                 | Description |
 |--------------------------------------------|-------------|

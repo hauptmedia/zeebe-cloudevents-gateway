@@ -10,7 +10,7 @@ This Cloudevents gateway consumes the following Cloudevents via the integrated h
 Any Cloudevent with a request type produces the corresponding response Cloudevent on the originating channel (e.g. as HTTP response).
 This is basically a thin translation layer for the Zeebe gRPC gateway protocol.
 
-| Message Type                                                | Json Schema                                                                                                                         |
+| Cloudevent Type                                             | Json Schema                                                                                                                         |
 |-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | io.zeebe.command.v1.CancelProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceRequest.json)          |
 | io.zeebe.command.v1.CancelProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceResponse.json)         |
@@ -47,7 +47,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Decision JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Decision.json)
 
-| Event Type                         |
+| Cloudevent Type                    |
 |------------------------------------|
 | io.zeebe.event.v1.Decision.created |
 
@@ -55,7 +55,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [DecisionEvaluation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionEvaluation.json)
 
-| Event Type                                     |
+| Cloudevent Type                                |
 |------------------------------------------------|
 | io.zeebe.event.v1.DecisionEvaluation.evaluated |
 | io.zeebe.event.v1.DecisionEvaluation.failed    |
@@ -64,7 +64,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [DecisionRequirements JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DecisionRequirements.json)
 
-| Event Type                                     |
+| Cloudevent Type                                |
 |------------------------------------------------|
 | io.zeebe.event.v1.DecisionRequirements.created |
 
@@ -72,7 +72,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Deployment JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Deployment.json)
 
-| Event Type                                    |
+| Cloudevent Type                               |
 |-----------------------------------------------|
 | io.zeebe.event.v1.Deployment.create           |
 | io.zeebe.event.v1.Deployment.created          |
@@ -84,7 +84,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [DeploymentDistribution JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/DeploymentDistribution.json)
 
-| Event Type                                            |
+| Cloudevent Type                                       |
 |-------------------------------------------------------|
 | io.zeebe.event.v1.DeploymentDistribution.distributing |
 | io.zeebe.event.v1.DeploymentDistribution.complete     |
@@ -94,7 +94,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Error JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Error.json)
 
-| Event Type                      |
+| Cloudevent Type                 |
 |---------------------------------|
 | io.zeebe.event.v1.Error.created |
 
@@ -103,7 +103,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Escalation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Escalation.json)
 
-| Event Type                                |
+| Cloudevent Type                           |
 |-------------------------------------------|
 | io.zeebe.event.v1.Escalation.escalated    |
 | io.zeebe.event.v1.Escalation.notEscalated |
@@ -113,7 +113,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Incident JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Incident.json)
 
-| Event Type                          |
+| Cloudevent Type                     |
 |-------------------------------------|
 | io.zeebe.event.v1.Incident.created  |
 | io.zeebe.event.v1.Incident.resolve  |
@@ -123,7 +123,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Job JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Job.json)
 
-| Event Type                                 |
+| Cloudevent Type                            |
 |--------------------------------------------|
 | io.zeebe.event.v1.Job.created              |
 | io.zeebe.event.v1.Job.complete             |
@@ -144,7 +144,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [JobBatch JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/JobBatch.json)
 
-| Event Type                           |
+| Cloudevent Type                      |
 |--------------------------------------|
 | io.zeebe.event.v1.JobBatch.activate  |
 | io.zeebe.event.v1.JobBatch.activated |
@@ -153,7 +153,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Message JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Message.json)
 
-| Event Type                          |
+| Cloudevent Type                     |
 |-------------------------------------|
 | io.zeebe.event.v1.Message.publish   |
 | io.zeebe.event.v1.Message.published |
@@ -164,7 +164,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [MessageStartEventSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageStartEventSubscription.json)
 
-| Event Type                                                 |
+| Cloudevent Type                                            |
 |------------------------------------------------------------|
 | io.zeebe.event.v1.MessageStartEventSubscription.created    |
 | io.zeebe.event.v1.MessageStartEventSubscription.correlated |
@@ -174,7 +174,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [MessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/MessageSubscription.json)
 
-| Event Type                                        |
+| Cloudevent Type                                   |
 |---------------------------------------------------|
 | io.zeebe.event.v1.MessageSubscription.create      |
 | io.zeebe.event.v1.MessageSubscription.created     |
@@ -190,7 +190,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Process JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Process.json)
 
-| Event Type                        |
+| Cloudevent Type                   |
 |-----------------------------------|
 | io.zeebe.event.v1.Process.created |
 
@@ -198,7 +198,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessEvent JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessEvent.json)
 
-| Event Type                                |
+| Cloudevent Type                           |
 |-------------------------------------------|
 | io.zeebe.event.v1.ProcessEvent.triggering |
 | io.zeebe.event.v1.ProcessEvent.triggered  |
@@ -208,7 +208,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessInstance JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstance.json)
 
-| Event Type                                           |
+| Cloudevent Type                                      |
 |------------------------------------------------------|
 | io.zeebe.event.v1.ProcessInstance.cancel             |
 | io.zeebe.event.v1.ProcessInstance.sequenceFlowTaken  |
@@ -226,7 +226,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessInstanceCreation JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceCreation.json)
 
-| Event Type                                                         |
+| Cloudevent Type                                                    |
 |--------------------------------------------------------------------|
 | io.zeebe.event.v1.ProcessInstanceCreation.create                   |
 | io.zeebe.event.v1.ProcessInstanceCreation.created                  |
@@ -236,7 +236,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessInstanceModification JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceModification.json)
 
-| Event Type                                              |
+| Cloudevent Type                                         |
 |---------------------------------------------------------|
 | io.zeebe.event.v1.ProcessInstanceModification.modify    |
 | io.zeebe.event.v1.ProcessInstanceModification.modified  |
@@ -246,7 +246,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessInstanceResult JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessInstanceResult.json)
 
-| Event Type                                        |
+| Cloudevent Type                                   |
 |---------------------------------------------------|
 | io.zeebe.event.v1.ProcessInstanceResult.completed |
 
@@ -255,7 +255,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [ProcessMessageSubscription JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/ProcessMessageSubscription.json)
 
-| Event Type                                              |
+| Cloudevent Type                                         |
 |---------------------------------------------------------|
 | io.zeebe.event.v1.ProcessMessageSubscription.creating   |
 | io.zeebe.event.v1.ProcessMessageSubscription.create     |
@@ -270,7 +270,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Timer JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Timer.json)
 
-| Event Type                        |
+| Cloudevent Type                   |
 |-----------------------------------|
 | io.zeebe.event.v1.Timer.created   |
 | io.zeebe.event.v1.Timer.trigger   |
@@ -281,7 +281,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [Variable JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/Variable.json)
 
-| Event Type                         |
+| Cloudevent Type                    |
 |------------------------------------|
 | io.zeebe.event.v1.Variable.created |
 | io.zeebe.event.v1.Variable.updated |
@@ -290,7 +290,7 @@ This Cloudevents gateway produces the following events via the integrated http s
 
 [VariableDocument JSON Schema](https://hauptmedia.github.io/zeebe-exporter-types/jsonschema/VariableDocument.json)
 
-| Event Type                                 |
+| Cloudevent Type                            |
 |--------------------------------------------|
 | io.zeebe.event.v1.VariableDocument.update  |
 | io.zeebe.event.v1.VariableDocument.updated |

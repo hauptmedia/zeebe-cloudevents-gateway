@@ -10,6 +10,17 @@ export interface HttpSenderOptions {
     source: 'kafka' | 'hazelcast';
 }
 
+const generateCloudeventsType = (record: ZeebeRecord<any>): string => {
+    const
+        recordType = record.recordType.toLowerCase(),
+        valueType = record.valueType.toLowerCase()
+            .replace(/_./g, m => m[1].toUpperCase())
+            .replace(/^./, str => str.toUpperCase()),
+        intent = record.intent.toLowerCase().replace(/_./g, (m) => m[1].toUpperCase());
+
+    return `io.zeebe.${recordType}.v1.${valueType}.${intent}`
+}
+
 export class HttpSender {
     protected consumer: ConsumerInterface;
     protected options: HttpSenderOptions;
@@ -66,7 +77,7 @@ export class HttpSender {
 
             } else {
                 const zeebeRecord = JSON.parse(data) as ZeebeRecord<ValueType>,
-                    type = `io.zeebe.${zeebeRecord.recordType.toLowerCase()}.${zeebeRecord.valueType.toLowerCase()}.${zeebeRecord.intent.toLowerCase()}`;
+                    type = generateCloudeventsType(zeebeRecord);
 
                 emit(new CloudEvent({
                     type,

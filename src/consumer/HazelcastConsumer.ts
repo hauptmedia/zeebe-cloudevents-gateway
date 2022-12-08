@@ -32,6 +32,8 @@ export class HazelcastConsumer implements ConsumerInterface{
     }
 
     async start(cb: (data: string, pause: () => () => void) => void) {
+        await this.connect();
+
         if(this.ringbuffer === null)
             throw "Not connected";
 

@@ -47,12 +47,12 @@ export class CloudeventsHandler {
             else
                 response = await this._handleCloudevent(cloudevent);
 
-
             res.writeHead(200);
             res.write(JSON.stringify(response));
         } catch(e: any) {
             res.writeHead(500);
             console.log(e.code, e.details);
+        } finally {
             res.end();
         }
 

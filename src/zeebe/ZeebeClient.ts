@@ -1,4 +1,5 @@
 import {
+    ActivateJobsRequest,
     CompleteJobRequest,
     CreateProcessInstanceRequest,
     CreateProcessInstanceWithResultRequest,
@@ -46,6 +47,18 @@ export class ZeebeClient {
 
     request(type: string, data: any) {
         switch (type) {
+            case 'a':
+                return new Promise((resolve, reject) => {
+                    const request = ActivateJobsRequest.fromJSON(data),
+                           stream = this.zbc.activateJobs(request),
+                           result: any[] = [];
+
+                    stream.on('data', (data) => result.push(data['jobs']));
+                    stream.on('end', () => resolve(result));
+                    stream.on('error', (e) => reject(e));
+                });
+                break;
+
             case 'CancelProcessInstanceRequest':
                 return this._requestHandler('cancelProcessInstance', CompleteJobRequest, data);
 

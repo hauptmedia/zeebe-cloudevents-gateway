@@ -1,0 +1,13 @@
+{
+  "specversion" : "1.0",
+  "id": "f5276fe8-a26d-4e86-862b-525f94600b57",
+  "source": "//my.fancy.system/projects/my-project/topics/my-topic",
+  "type": "io.zeebe.command.v1.ActivateJobsRequest",
+  "datacontenttype" : "application/json",
+  "data": {
+    "type": "io.camunda.zeebe:userTask",
+    "worker": "test",
+    "maxJobsToActivate": 1,
+    "timeout": 1
+  }
+}

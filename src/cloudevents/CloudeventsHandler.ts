@@ -41,14 +41,20 @@ export class CloudeventsHandler {
 
         let response;
 
-        if (Array.isArray(cloudevent))
-            response = await Promise.all(cloudevent.map(async ce => await this._handleCloudevent(ce)));
-        else
-            response = await this._handleCloudevent(cloudevent);
+        try {
+            if (Array.isArray(cloudevent))
+                response = await Promise.all(cloudevent.map(async ce => await this._handleCloudevent(ce)));
+            else
+                response = await this._handleCloudevent(cloudevent);
 
 
-        res.writeHead(200);
-        res.write(JSON.stringify(response));
-        res.end();
+            res.writeHead(200);
+            res.write(JSON.stringify(response));
+        } catch(e: any) {
+            res.writeHead(500);
+            console.log(e.code, e.details);
+            res.end();
+        }
+
     }
 }

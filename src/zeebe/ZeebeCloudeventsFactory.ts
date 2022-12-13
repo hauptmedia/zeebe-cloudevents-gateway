@@ -23,9 +23,23 @@ const generateCloudeventsType = (record: ZeebeRecord<any>): string => {
 export const generateCloudEvent = (record: ZeebeRecord<any>): CloudEvent => {
     const type = generateCloudeventsType(record);
 
-    return new CloudEvent({
-        type,
-        source: "source",
-        data: record.value
-    });
+    if(type.startsWith("io.zeebe.commandRejection")) {
+        //generate rejection cloud event
+        return new CloudEvent<any>({
+            type,
+            source: "source",
+            data: {
+                rejectionType: record.rejectionType,
+                rejectionReason: record.rejectionReason,
+                value: record.value
+            }
+        });
+
+    } else {
+        return new CloudEvent<any>({
+            type,
+            source: "source",
+            data: record.value
+        });
+    }
 }

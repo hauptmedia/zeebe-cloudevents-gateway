@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "rejectionType": {
+      "$ref": "#/definitions/RejectionType",
+      "description": "the type of rejection"
+    },
+    "rejectionReason": {
+      "description": "the reason why a command was rejected",
+      "type": "string"
+    },
+    "value": {
+      "description": "The record value is essentially the record specific data, e.g. for a process instance\ncreation event, it would contain information relevant to the process instance being created.",
+      "type": "object"
+    }
+  },
+    "RejectionType": {
+      "enum": [
+        "ALREADY_EXISTS",
+        "EXCEEDED_BATCH_RECORD_SIZE",
+        "INVALID_ARGUMENT",
+        "INVALID_STATE",
+        "NOT_FOUND",
+        "PROCESSING_ERROR"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

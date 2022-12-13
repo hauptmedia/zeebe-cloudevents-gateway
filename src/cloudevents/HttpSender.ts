@@ -3,22 +3,12 @@ import {Message} from "cloudevents/dist/message";
 import {CloudEvent, emitterFor, Mode} from "cloudevents";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 import {ConsumerInterface} from "../consumer/ConsumerInterface";
+import {generateCloudeventsType} from "../zeebe/generateCloudeventsType";
 
 export interface HttpSenderOptions {
     secure: boolean;
     endpoint: string;
     source: 'kafka' | 'hazelcast';
-}
-
-const generateCloudeventsType = (record: ZeebeRecord<any>): string => {
-    const
-        recordType = record.recordType.toLowerCase(),
-        valueType = record.valueType.toLowerCase()
-            .replace(/_./g, m => m[1].toUpperCase())
-            .replace(/^./, str => str.toUpperCase()),
-        intent = record.intent.toLowerCase().replace(/_./g, (m) => m[1].toUpperCase());
-
-    return `io.zeebe.${recordType}.v1.${valueType}.${intent}`
 }
 
 export class HttpSender {

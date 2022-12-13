@@ -47,7 +47,7 @@ export class ZeebeClient {
 
     request(type: string, data: any) {
         switch (type) {
-            case 'a':
+            case 'ActivateJobsRequest':
                 return new Promise((resolve, reject) => {
                     const request = ActivateJobsRequest.fromJSON(data),
                            stream = this.zbc.activateJobs(request),
@@ -99,7 +99,7 @@ export class ZeebeClient {
                 return this._requestHandler('updateJobRetries', UpdateJobRetriesRequest, data)
 
             default:
-                throw `Unsupported request type: ${data}`
+                throw `Unsupported request type: ${type}`
         }
     }
 }

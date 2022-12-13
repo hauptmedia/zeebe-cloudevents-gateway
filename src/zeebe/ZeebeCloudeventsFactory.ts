@@ -1,4 +1,5 @@
 import {ZeebeRecord} from "@hauptmedia/zeebe-exporter-types/dist/esm";
+import {CloudEvent} from "cloudevents";
 
 const toCamelCase = (input: string, firstCharUppercase: boolean) => {
     let returnValue = input.toLowerCase()
@@ -10,11 +11,21 @@ const toCamelCase = (input: string, firstCharUppercase: boolean) => {
     return returnValue;
 }
 
-export const generateCloudeventsType = (record: ZeebeRecord<any>): string => {
+const generateCloudeventsType = (record: ZeebeRecord<any>): string => {
     const
         recordType = toCamelCase(record.recordType, false),
         valueType = toCamelCase(record.valueType, true),
         intent = toCamelCase(record.intent, false);
 
     return `io.zeebe.${recordType}.v1.${valueType}.${intent}`
+}
+
+export const generateCloudEvent = (record: ZeebeRecord<any>): CloudEvent => {
+    const type = generateCloudeventsType(record);
+
+    return new CloudEvent({
+        type,
+        source: "source",
+        data: record.value
+    });
 }

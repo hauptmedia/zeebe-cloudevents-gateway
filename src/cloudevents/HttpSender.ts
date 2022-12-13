@@ -1,9 +1,9 @@
 import Http2Client from "../http2/Http2Client";
 import {Message} from "cloudevents/dist/message";
-import {CloudEvent, emitterFor, Mode} from "cloudevents";
+import {emitterFor, Mode} from "cloudevents";
 import {ValueType, ZeebeRecord} from "@hauptmedia/zeebe-exporter-types";
 import {ConsumerInterface} from "../consumer/ConsumerInterface";
-import {generateCloudeventsType} from "../zeebe/generateCloudeventsType";
+import {generateCloudEvent} from "../zeebe/ZeebeCloudeventsFactory";
 
 export interface HttpSenderOptions {
     secure: boolean;
@@ -66,14 +66,9 @@ export class HttpSender {
                 throw "[http/2] session is not connected";
 
             } else {
-                const zeebeRecord = JSON.parse(data) as ZeebeRecord<ValueType>,
-                    type = generateCloudeventsType(zeebeRecord);
 
-                emit(new CloudEvent({
-                    type,
-                    source: "source",
-                    data: zeebeRecord.value
-                }));
+                const zeebeRecord = JSON.parse(data) as ZeebeRecord<ValueType>;
+                emit(generateCloudEvent(zeebeRecord))
             }
         });
     }

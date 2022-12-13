@@ -10,34 +10,36 @@ This Cloudevents gateway consumes the following Cloudevents via the integrated h
 Any Cloudevent with a request type produces the corresponding response Cloudevent on the originating channel (e.g. as HTTP response).
 This is basically a thin translation layer for the Zeebe gRPC gateway protocol.
 
-| Cloudevent Type                                             | Json Schema                                                                                                                         |
-|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| io.zeebe.command.v1.CancelProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceRequest.json)          |
-| io.zeebe.command.v1.CancelProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceResponse.json)         |
-| io.zeebe.command.v1.CompleteJobRequest                      | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CompleteJobRequest.json)                    |
-| io.zeebe.command.v1.CompleteJobResponse                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CompleteJobResponse.json)                   |
-| io.zeebe.command.v1.CreateProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceRequest.json)          |
-| io.zeebe.command.v1.CreateProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceResponse.json)         |
-| io.zeebe.command.v1.CreateProcessInstanceWithResultRequest  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceWithResultRequest.json) |
+| Cloudevent Type                                             | Json Schema                                                                                                             |
+|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| io.zeebe.command.v1.ActivateJobsRequest                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ActivateJobsRequest.json)                     |
+| io.zeebe.command.v1.ActivateJobsResponse                    | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ActivateJobsResponse.json)                    |
+| io.zeebe.command.v1.CancelProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceRequest.json)            |
+| io.zeebe.command.v1.CancelProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CancelProcessInstanceResponse.json)           |
+| io.zeebe.command.v1.CompleteJobRequest                      | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CompleteJobRequest.json)                      |
+| io.zeebe.command.v1.CompleteJobResponse                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CompleteJobResponse.json)                     |
+| io.zeebe.command.v1.CreateProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceRequest.json)            |
+| io.zeebe.command.v1.CreateProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceResponse.json)           |
+| io.zeebe.command.v1.CreateProcessInstanceWithResultRequest  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceWithResultRequest.json)  |
 | io.zeebe.command.v1.CreateProcessInstanceWithResultResponse | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/CreateProcessInstanceWithResultResponse.json) |
-| io.zeebe.command.v1.DeployResourceRequest                   | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/DeployResourceRequest.json)                 | 
-| io.zeebe.command.v1.DeployResourceResponse                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/DeployResourceResponse.json)                |
-| io.zeebe.command.v1.FailJobRequest                          | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/FailJobRequest.json)                        |
-| io.zeebe.command.v1.FailJobResponse                         | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/FailJobResponse.json)                       |
-| io.zeebe.command.v1.ModifyProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ModifyProcessInstanceRequest.json)          |
-| io.zeebe.command.v1.ModifyProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ModifyProcessInstanceResponse.json)         |
-| io.zeebe.command.v1.PublishMessageRequest                   | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/PublishMessageRequest.json)                 |
-| io.zeebe.command.v1.PublishMessageResponse                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/PublishMessageResponse.json)                |
-| io.zeebe.command.v1.ResolveIncidentRequest                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ResolveIncidentRequest.json)                |
-| io.zeebe.command.v1.ResolveIncidentResponse                 | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ResolveIncidentResponse.json)               |
-| io.zeebe.command.v1.SetVariablesRequest                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/SetVariablesRequest.json)                   |
-| io.zeebe.command.v1.SetVariablesResponse                    | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/SetVariablesResponse.json)                  |
-| io.zeebe.command.v1.ThrowErrorRequest                       | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ThrowErrorRequest.json)                     |
-| io.zeebe.command.v1.ThrowErrorResponse                      | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ThrowErrorResponse.json)                    |
-| io.zeebe.command.v1.TopologyRequest                         | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/TopologyRequest.json)                       |
-| io.zeebe.command.v1.TopologyResponse                        | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/TopologyResponse.json)                      |
-| io.zeebe.command.v1.UpdateJobRetriesRequest                 | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/UpdateJobRetriesRequest.json)               |
-| io.zeebe.command.v1.UpdateJobRetriesResponse                | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/UpdateJobRetriesResponse.json)              |
+| io.zeebe.command.v1.DeployResourceRequest                   | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/DeployResourceRequest.json)                   | 
+| io.zeebe.command.v1.DeployResourceResponse                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/DeployResourceResponse.json)                  |
+| io.zeebe.command.v1.FailJobRequest                          | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/FailJobRequest.json)                          |
+| io.zeebe.command.v1.FailJobResponse                         | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/FailJobResponse.json)                         |
+| io.zeebe.command.v1.ModifyProcessInstanceRequest            | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ModifyProcessInstanceRequest.json)            |
+| io.zeebe.command.v1.ModifyProcessInstanceResponse           | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ModifyProcessInstanceResponse.json)           |
+| io.zeebe.command.v1.PublishMessageRequest                   | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/PublishMessageRequest.json)                   |
+| io.zeebe.command.v1.PublishMessageResponse                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/PublishMessageResponse.json)                  |
+| io.zeebe.command.v1.ResolveIncidentRequest                  | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ResolveIncidentRequest.json)                  |
+| io.zeebe.command.v1.ResolveIncidentResponse                 | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ResolveIncidentResponse.json)                 |
+| io.zeebe.command.v1.SetVariablesRequest                     | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/SetVariablesRequest.json)                     |
+| io.zeebe.command.v1.SetVariablesResponse                    | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/SetVariablesResponse.json)                    |
+| io.zeebe.command.v1.ThrowErrorRequest                       | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ThrowErrorRequest.json)                       |
+| io.zeebe.command.v1.ThrowErrorResponse                      | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/ThrowErrorResponse.json)                      |
+| io.zeebe.command.v1.TopologyRequest                         | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/TopologyRequest.json)                         |
+| io.zeebe.command.v1.TopologyResponse                        | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/TopologyResponse.json)                        |
+| io.zeebe.command.v1.UpdateJobRetriesRequest                 | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/UpdateJobRetriesRequest.json)                 |
+| io.zeebe.command.v1.UpdateJobRetriesResponse                | [JSON Schema](https://hauptmedia.github.io/zeebe-gateway-types/jsonschema/UpdateJobRetriesResponse.json)                |
 
 # Zeebe Cloudevents Events
 
